@@ -1,0 +1,15 @@
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: teal;
+}
+.und a:hover{
+    text-decoration: underline;
+}
+.toast{
+    padding: 10px;
+}
+#title{
+    padding: 0;
+    margin: 0;
+}
