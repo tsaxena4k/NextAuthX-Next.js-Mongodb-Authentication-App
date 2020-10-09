@@ -21,7 +21,7 @@ export default function Layout({ children }) {
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             </Head>
             <main className={user ? "#80cbc4 blue lighten-3" : "#80cbc4 teal lighten-3"}>
-                <div className="right" style={{ fontSize: "2rem", cursor: 'pointer', margin: '1rem' }}><Link href="/"><AiTwotoneHome /></Link> <a className={!user ? "waves-effect waves-light btn-small modal-trigger" : "waves-effect waves-light btn-small modal-trigger blue"} href="#modal1" style={{ marginTop: '-15px' }}>About</a></div>
+                <div className="right-align" style={{ fontSize: "2rem", cursor: 'pointer', margin: '1rem' }}><Link href="/"><AiTwotoneHome /></Link> <a className={!user ? "waves-effect waves-light btn-small modal-trigger" : "waves-effect waves-light btn-small modal-trigger blue"} href="#modal1" style={{ marginTop: '-15px' }}>About</a></div>
                 <div className="container  valign-wrapper">
                     <div className="row">
                         <div className="col s12 m12">

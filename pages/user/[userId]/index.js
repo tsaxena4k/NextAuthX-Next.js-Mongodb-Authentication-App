@@ -21,28 +21,27 @@ export default function UserPage({ user }) {
             </Head>
             <div className="card horizontal z-depth-5 large">
                 <div
-                    className="card-image"
-                    style={{
-                        display: "flex",
-                        background: "#f2e7de",
-                        alignItems: "flex-end"
-                    }}>
+                    className="card-image hide-on-small-only"
+                    style={{background:'#8de'}}
+                    >   
                     <img
+                        className="circle"
                         src={profilePicture}
                         width="200"
                         height="200"
-                        style={{}} alt={name}
+                        alt={name}
                     />
                 </div>
                 <div className="card-stacked center-align">
                     <div className="card-content">
                         <div>
                             <section>
-                                <div className="">
+                                <div className="hide-on-med-and-up">
+                                    <img src={profilePicture} className="circle" width="150" style={{border:'5px solid #29f'}}/>
+                                </div>    
                                     <h2>{name}</h2>
-                                </div>
                                 <div class="col s12 m12">
-                                    <div class="card-panel blue left-align white-text" style={{fontSize:'2rem'}}>
+                                    <div class="card-panel blue left-align white-text" style={{fontSize:'1rem'}}>
                                     
                                     <p>Bio : {bio}</p>
                                     
