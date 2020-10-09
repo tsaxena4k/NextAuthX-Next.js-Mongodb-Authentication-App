@@ -13,3 +13,6 @@ a{
     padding: 0;
     margin: 0;
 }
+.row,.horizontal{
+    margin-bottom: 0;
+}
