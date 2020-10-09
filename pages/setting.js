@@ -11,7 +11,7 @@ export default function login() {
                     alignItems: "flex-end"
                 }}>
                 <img
-                    src="https://cdn.dribbble.com/users/1090020/screenshots/14127411/media/6927761ee5cd727f655a3f8f5e112ef0.png"
+                    src="https://cdn.dribbble.com/users/1090020/screenshots/14218299/media/1ecb6705993dc024056b9d3b9a206f1a.png"
                     className="responsive-img"
                     style={{}} alt="student"
                 />
