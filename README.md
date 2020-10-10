@@ -20,7 +20,7 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 
 <h3>:lock: Authentication</h3>
 
-<div align="center">
+<div>
 
 - [x] Session
 - [x] Sign up/Sign in/Sign out
@@ -29,7 +29,7 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 
 <h3>:woman::man: Profile</h3>
 
-<div align="center">
+<div>
 
 - [x] Profile picture, name, bio, email
 - [x] Edit profile
