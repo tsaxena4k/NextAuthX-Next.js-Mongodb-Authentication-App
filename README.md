@@ -18,18 +18,18 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
             
 <p align="center">:heavy_check_mark: No Express.js :heavy_check_mark: Serverless ready :heavy_check_mark: API Routes :heavy_check_mark: Middleware</p>
 
-<h3>:lock: Authentication</h3>
+<h3 align="center">:lock: Authentication</h3>
 
-<div>
+<div align="center">
 
 - [x] Session
 - [x] Sign up/Log in/Log out
 
 </div>
 
-<h3>:woman::man: Profile</h3>
+<h3 align=""center>:woman::man: Profile</h3>
 
-<div>
+<div align="center">
 
 - [x] Profile picture, name, bio, email
 - [x] Edit profile
@@ -43,6 +43,22 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 <h3 align="center">Home</h3>
 
 <img src="https://i.ibb.co/WpChDPd/Home-before-login.jpg" alt="Home Before Login" />
+
+<h3 align="center">Login</h3>
+
+<img src="https://i.ibb.co/8KBScRy/login.jpg" alt="Login" />
+
+<h3 align="center">Sign up</h3>
+
+<img src="https://i.ibb.co/ynWnRpq/signup.jpg" alt="Sign up" />
+
+<h3 align="center">Home After Login</h3>
+
+<img src="https://i.ibb.co/nz8t7SC/Home-after-login.jpg" alt="Home After Login" />
+
+<h3 align="center">Profile</h3>
+
+<img src="https://i.ibb.co/251QHMn/profile.jpg" alt="Profile" />
 
 </div>
 
