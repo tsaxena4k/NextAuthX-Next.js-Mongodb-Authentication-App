@@ -97,6 +97,14 @@ Required environmental variables in this project include:
 - `process.env.MONGODB_DB` The name of the MongoDB database to be used.
 - `process.env.CLOUDINARY_URL` (optional, Cloudinary **only**) Cloudinary environment variable for configuration. See [this](https://cloudinary.com/documentation/node_integration#configuration).
 
+<h3 align="center">Connect</h3>
+
+<div align="center">
+  
+![twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Ftsaxena4k) [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/tushar-saxena-94b742184/)
+  
+</div>  
+
 <h2 align="center">
   License
 </h2>
