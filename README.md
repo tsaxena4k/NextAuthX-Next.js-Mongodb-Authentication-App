@@ -27,7 +27,7 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 
 </div>
 
-<h3 align=""center>:woman::man: Profile</h3>
+<h3 align="center">:woman::man: Profile</h3>
 
 <div align="center">
 
@@ -62,6 +62,10 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 
 </div>
 
+<h3 align="center">Edit Profile</h3>
+
+<img src="https://i.ibb.co/cTX1C7h/edit-profile.jpg" alt="Edit Profile" />
+
 <h3>Dependencies</h3>
 
 This project uses the following dependencies:
@@ -90,3 +94,13 @@ Required environmental variables in this project include:
 - `process.env.MONGODB_URI` The MongoDB Connection String (with credentials)
 - `process.env.MONGODB_DB` The name of the MongoDB database to be used.
 - `process.env.CLOUDINARY_URL` (optional, Cloudinary **only**) Cloudinary environment variable for configuration. See [this](https://cloudinary.com/documentation/node_integration#configuration).
+
+<h2 align="center">
+  License
+</h2>
+
+<div align="center">
+  
+  [MIT](LICENSE)
+  
+</div>
