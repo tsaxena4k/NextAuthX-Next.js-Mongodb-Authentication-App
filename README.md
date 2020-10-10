@@ -68,7 +68,7 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 
 </div>
 
-<h3>Dependencies</h3>
+<h3 align="center">Dependencies</h3>
 
 This project uses the following dependencies:
 
