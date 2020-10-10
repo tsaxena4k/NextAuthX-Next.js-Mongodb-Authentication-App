@@ -7,10 +7,10 @@ handler.use(middleware); // see how we're reusing our middleware
 
 // POST /api/users
 handler.post(async (req, res) => {
-  const { message } = req.body;
+  const { message,name } = req.body;
   const msg = await req.db
     .collection('messages')
-    .insertOne({ message })
+    .insertOne({ name,message })
     .then(({ ops }) => ops[0]);
   res.status(201).end();   
 });
