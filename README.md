@@ -1,4 +1,4 @@
-<p align="">
+<p>
   <img src="https://i.ibb.co/h9fG4k8/Banner2.jpg" alt="Sublime's custom image" width=1500/>
 </p>
 
@@ -36,7 +36,17 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 
 </div>
 
-<h3 align="center">Dependencies</h3>
+<h2 align="center">📷 Screenshots</h2>
+
+<div align="center">
+  
+<h3 align="center">Home</h3>
+
+<img src="https://i.ibb.co/WpChDPd/Home-before-login.jpg" alt="Home Before Login" />
+
+</div>
+
+<h3>Dependencies</h3>
 
 This project uses the following dependencies:
 
