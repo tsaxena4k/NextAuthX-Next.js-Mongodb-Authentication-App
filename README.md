@@ -60,11 +60,11 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 
 <img src="https://i.ibb.co/251QHMn/profile.jpg" alt="Profile" />
 
-</div>
-
 <h3 align="center">Edit Profile</h3>
 
 <img src="https://i.ibb.co/cTX1C7h/edit-profile.jpg" alt="Edit Profile" />
+
+</div>
 
 <h3>Dependencies</h3>
 
