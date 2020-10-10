@@ -8,6 +8,8 @@
   
 [![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/new/project?template=https://github.com/tsaxena4k/Next.js-Mongodb-Authentication-App)
 
+![github last commit](https://img.shields.io/github/last-commit/tsaxena4k/Next.js-Mongodb-Authentication-App?style=flat-square)  ![github release](https://img.shields.io/github/release-date/tsaxena4k/Next.js-Mongodb-Authentication-App?style=flat-square)  ![repo size](https://img.shields.io/github/repo-size/tsaxena4k/Next.js-Mongodb-Authentication-App?style=flat-square)
+
 An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/) , [**MongoDB**](https://www.mongodb.com/) and [**Passport.js**](http://www.passportjs.org/)
 
 :rainbow: [Check out the demo](https://next-js-mongodb-authentications-app.vercel.app/)
