@@ -1,4 +1,4 @@
-import Recat,{useState} from 'react';
+import React,{useState} from 'react';
 import { useUser } from '../lib/hooks';
 
 export default function afterLogin() {
@@ -7,7 +7,8 @@ export default function afterLogin() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const body = {
-            message: e.currentTarget.message.value
+            message: e.currentTarget.message.value,
+            name: user.name
         };
         const res = await fetch("/api/message", {
             method: "POST",
