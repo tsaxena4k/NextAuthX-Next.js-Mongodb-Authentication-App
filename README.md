@@ -1,1 +1,3 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+<p align="center">
+  <img src="https://i.ibb.co/h9fG4k8/Banner2.jpg" alt="Sublime's custom image"/>
+</p>
