@@ -25,11 +25,11 @@ export default function UserPage({ user }) {
                     style={{background:'#8de'}}
                     >   
                     <img
-                        className="circle"
                         src={profilePicture}
                         width="200"
                         height="200"
                         alt={name}
+                        style={{padding:'2rem',borderRadius:'50%',borderBottom:'2px solid #29f'}}
                     />
                 </div>
                 <div className="card-stacked center-align">
@@ -43,10 +43,10 @@ export default function UserPage({ user }) {
                                 <div class="col s12 m12">
                                     <div class="card-panel blue left-align white-text" style={{fontSize:'1rem'}}>
                                     
-                                    <p>Bio : {bio}</p>
+                                    <p><strong>Bio :</strong> {bio}</p>
                                     
                                     <p>
-                                    Email :  {email}
+                                    <strong>Email :</strong>  {email}
                                     </p>
                         
                                     </div>
