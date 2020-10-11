@@ -1,6 +1,5 @@
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { AiTwotoneHome } from 'react-icons/ai';
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useUser } from "../lib/hooks";
@@ -10,13 +9,14 @@ export default function Login() {
     const router = useRouter();
     const [errorMsg, setErrorMsg] = useState("");
     const [user, { mutate }] = useUser();
+    const [loading,isLoading]=useState(user?true:false);
     useEffect(() => {
         // redirect to home if user is authenticated
         if (user) router.replace("/");
     }, [user]);
 
     async function onSubmit(e) {
-
+        isLoading(true);
         e.preventDefault();
         const body = {
             email: e.currentTarget.email.value,
@@ -32,12 +32,16 @@ export default function Login() {
             mutate(userObj);
             M.toast({ html: 'Logged in', classes: 'blue' })
         } else {
+            isLoading(false);
             setErrorMsg("Incorrect username or password. Try again!");
         }
     }
 
     return (
         <>
+            {loading?<div class="progress">
+                <div class="indeterminate"></div>
+            </div>:null}
             <div className="row">
                 <div className="col s12 m12">
                     <div className="card  z-depth-0">
