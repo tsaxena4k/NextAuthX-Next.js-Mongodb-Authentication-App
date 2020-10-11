@@ -101,7 +101,7 @@ Required environmental variables in this project include:
 
 <div align="center">
   
-![twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Ftwitter.com%2Ftsaxena4k) [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/tushar-saxena-94b742184/)
+![twitter](https://img.shields.io/twitter/follow/tsaxena4k?style=social) [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/tushar-saxena-94b742184/) [<img src="https://i.imgur.com/OgUDrnB.png" width="15"/> Instagram](https://www.instagram.com/tsaxena4k/)
   
 </div>  
 
