@@ -1,16 +1,20 @@
 import Link from 'next/link';
 import { useUser } from '../lib/hooks';
 import AfterLogin from '../components/AfterLogin';
+import {useState} from 'react'
 
 export default function Home() {
     const [user, { mutate }] = useUser();
+    const [loading, isLoading] = useState(false);
     const handleLogout = async () => {
+        isLoading(true);
         await fetch('/api/auth', {
             method: 'DELETE',
         });
         // set the user state to null
         mutate(null);
         M.toast({ html: 'Logged out' })
+        isLoading(false);
     };
     return (
         <>
@@ -31,6 +35,9 @@ export default function Home() {
 
                 </div>
                 <div className="card-stacked center-align">
+                    {loading ? <div class="progress white" style={{margin:0}}>
+                        <div class="indeterminate blue"></div>
+                    </div> : null}
                     <div className="card-content">
                         <h2 style={{ marginTop: '0' }}><span style={{ fontWeight: 'bolder', color: `${user ? '#2196f3' : '#7ed'}`, textShadow: '2px 2px black' }}>Hello </span>{!user ? 'Stranger' : user.name}</h2>
                         {!user ? <div className="card-title und">Welcome to <strong><a onClick={() => M.toast({ html: 'Coming soon', classes: 'toast' })}>Tushar.dev</a></strong></div> : null}
