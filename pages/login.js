@@ -17,11 +17,7 @@ export default function login() {
                     style={{}} alt="student"
                 />
             </div>
-            <div className="card-stacked center-align">
-                <div className="card-content">
-                    <Login />
-                </div>
-            </div>
+            <Login/>
         </div>
     );
 }

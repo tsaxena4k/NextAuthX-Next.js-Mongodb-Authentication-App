@@ -18,11 +18,7 @@ export default function signup(){
               style={{}} alt="student"
             />
           </div>
-          <div className="card-stacked center-align">
-            <div className="card-content">
-              <Signup/>
-            </div>
-          </div>
+          <Signup/>
         </div>
       );
 }
