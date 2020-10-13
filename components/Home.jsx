@@ -13,7 +13,7 @@ export default function Home() {
         });
         // set the user state to null
         mutate(null);
-        M.toast({ html: 'Logged out' })
+        M.toast({ html: 'Logged out' ,classes:'toast'})
         isLoading(false);
     };
     return (
