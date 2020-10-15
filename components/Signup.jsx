@@ -46,8 +46,8 @@ export default function Login() {
     return (
         <>
             <div className="card-stacked center-align">
-                {loading ? <div class="progress" style={{ margin: 0 }}>
-                    <div class="indeterminate"></div>
+                {loading ? <div className="progress" style={{ margin: 0 }}>
+                    <div className="indeterminate"></div>
                 </div> : null}
                 <div className="card-content">
                     <div className="row">
@@ -88,34 +88,34 @@ export default function Login() {
                                                         />
                                                         <label htmlFor="email">Email</label>
                                                     </div>
-                                                    <div class="input-field col s12">
+                                                    <div className="input-field col s12">
                                                         <i className="prefix">
                                                             <RiLockPasswordFill />
                                                         </i>
                                                         <input
                                                             id="password"
                                                             type="password"
-                                                            class="validate"
+                                                            className="validate"
                                                             name="password"
                                                             required
                                                         />
                                                         <label htmlFor="password">Password</label>
                                                     </div>
-                                                    <div class="input-field col s12">
+                                                    <div className="input-field col s12">
                                                         <i className="prefix">
                                                             <RiLockPasswordLine />
                                                         </i>
                                                         <input
                                                             id="cpassword"
                                                             type="password"
-                                                            class="validate"
+                                                            className="validate"
                                                             name="cpassword"
                                                             required
                                                         />
                                                         <label htmlFor="cpassword">Confirm Password</label>
                                                     </div>
                                                     <div className="col s12" style={{ marginBottom: '1rem' }}>
-                                                        <button class="waves-effect waves-light btn col s12" type="submit">
+                                                        <button className="waves-effect waves-light btn col s12" type="submit">
                                                             sign up
                                             </button>
                                                     </div>

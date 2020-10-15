@@ -40,8 +40,8 @@ export default function Login() {
     return (
         <>
             <div className="card-stacked center-align">
-                {loading ? <div class="progress" style={{ margin: 0 }}>
-                    <div class="indeterminate"></div>
+                {loading ? <div className="progress" style={{ margin: 0 }}>
+                    <div className="indeterminate"></div>
                 </div> : null}
                 <div className="card-content">
                     <div className="row">
@@ -61,7 +61,7 @@ export default function Login() {
                                                     <input id="email" type="text" className="validate" required />
                                                     <label htmlFor="email">Email</label>
                                                 </div>
-                                                <div class="input-field col s12">
+                                                <div className="input-field col s12">
                                                     <i className="prefix">
                                                         <RiLockPasswordFill />
                                                     </i>

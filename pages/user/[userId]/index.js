@@ -40,8 +40,8 @@ export default function UserPage({ user }) {
                                     <img src={profilePicture} className="circle" width="150" style={{border:'5px solid #29f'}}/>
                                 </div>    
                                     <h2>{name}</h2>
-                                <div class="col s12 m12">
-                                    <div class="card-panel blue left-align white-text" style={{fontSize:'1rem'}}>
+                                <div className="col s12 m12">
+                                    <div className="card-panel blue left-align white-text" style={{fontSize:'1rem'}}>
                                     
                                     <p><strong>Bio :</strong> {bio}</p>
                                     
@@ -59,7 +59,7 @@ export default function UserPage({ user }) {
                     <div className="card-action">
                         {isCurrentUser && (
                             <Link href="/setting">
-                                <a class="waves-effect waves-light btn-small blue">Edit</a>
+                                <a className="waves-effect waves-light btn-small blue">Edit</a>
                             </Link>
                         )}
                     </div>

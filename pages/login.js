@@ -1,5 +1,4 @@
 import Login from "../components/Login";
-import Link from 'next/link';
 
 export default function login() {
     return (

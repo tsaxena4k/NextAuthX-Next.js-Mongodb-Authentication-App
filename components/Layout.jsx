@@ -29,8 +29,8 @@ export default function Layout({ children }) {
                         </div>
                     </div>
                 </div>
-                <div id="modal1" class="modal modal-fixed-footer">
-                    <div class="modal-content" style={{ backgroundImage: `url(${"https://barbarashdwallpapers.com/wp-content/uploads/2015/05/White-wave-pattern-wallpaper-1.jpg"})` }}>
+                <div id="modal1" className="modal modal-fixed-footer">
+                    <div className="modal-content" style={{ backgroundImage: `url(${"https://barbarashdwallpapers.com/wp-content/uploads/2015/05/White-wave-pattern-wallpaper-1.jpg"})` }}>
                         <div className="right-align" style={{ fontSize: '2rem' }}>
                             <a href="https://github.com/tsaxena4k" target="_blank"><FaGithub /> </a>
                             <a href="https://www.facebook.com/tushar.saxena.56232/" target="_blank"><FaFacebook /> </a>
@@ -52,8 +52,8 @@ export default function Layout({ children }) {
                              to know more check out the <a href="https://github.com/tsaxena4k" target="_blank">github repository</a> for the same.</strong></p>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Dissmiss</a>
+                    <div className="modal-footer">
+                        <a href="#!" className="modal-close waves-effect waves-green btn-flat">Dissmiss</a>
                     </div>
                 </div>
             </main>
