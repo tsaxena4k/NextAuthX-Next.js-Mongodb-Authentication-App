@@ -3,7 +3,8 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { AiTwotoneHome } from 'react-icons/ai';
 import { FaFacebook, FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
-import { GiSelfLove } from 'react-icons/gi';
+import { MdNotifications } from 'react-icons/md';
+import Router from 'next/router';
 import { useUser } from "../lib/hooks";
 
 export default function Layout({ children }) {
@@ -21,9 +22,13 @@ export default function Layout({ children }) {
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             </Head>
             <main className={user ? "#80cbc4 blue lighten-3" : "#80cbc4 teal lighten-3"}>
+                <div className="col s12 m12 right-align" style={{margin:'10px 10px'}}>
+                    <a className={user ? 'waves-effect waves-light btn-small blue left' : 'waves-effect waves-light btn-small left'} onClick={() => Router.replace("/")}><AiTwotoneHome /></a>&nbsp;
+                    <a className={!user ? "waves-effect waves-light btn-small modal-trigger" : "waves-effect waves-light btn-small modal-trigger blue"} href="#modal1">About</a>&nbsp;
+                    <i className="btn-small blue"><MdNotifications /></i>
+                </div>
                 <div className="container  valign-wrapper">
                     <div className="row">
-                        <div className="col s12 m12 center-align"><span className={user?'waves-effect waves-light btn-small blue':'waves-effect waves-light btn-small'}><Link href="/"><AiTwotoneHome /></Link></span> <a className={!user ? "waves-effect waves-light btn-small modal-trigger" : "waves-effect waves-light btn-small modal-trigger blue"} href="#modal1">About</a></div>
                         <div className="col s12 m12">
                             {children}
                         </div>
