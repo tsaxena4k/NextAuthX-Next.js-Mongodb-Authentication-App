@@ -14,6 +14,8 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 
 :rainbow: [Check out the demo](https://next-js-mongodb-authentications-app.vercel.app/)
 
+<h6><em>Drop a ⭐ if you Like it</em></h6>
+
 </div>
 
 <h2 align="center">Features</h2>
