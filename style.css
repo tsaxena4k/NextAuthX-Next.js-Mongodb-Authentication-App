@@ -16,3 +16,14 @@ a{
 .row,.horizontal{
     margin-bottom: 0;
 }
+.notification{
+    position: relative;
+}
+.badgen{
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    padding: 0px 10px;
+    border-radius: 50%;
+    color: white;
+}
