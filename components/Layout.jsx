@@ -22,16 +22,16 @@ export default function Layout({ children }) {
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             </Head>
             <main className={user ? "#80cbc4 blue lighten-3" : "#80cbc4 teal lighten-3"}>
-                <div className="col s12 m12 right-align" style={{ margin: '20px 20px' }}>
-                    <a className={user ? 'waves-effect waves-light btn-small blue left' : 'waves-effect waves-light btn-small left'} onClick={() => Router.replace("/")}><AiTwotoneHome /></a>&nbsp;
-                    <a className={!user ? "waves-effect waves-light btn-small modal-trigger" : "waves-effect waves-light btn-small modal-trigger blue"} href="#modal1">About</a>&nbsp;
-                    <a className={user?"btn-small blue notification dropdown-trigger":"btn-small notification dropdown-trigger"} data-target='dropdown1'><MdNotifications /><span class="badgen red">1</span></a>
-                </div>
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a >Welcome</a></li>
-                </ul>
                 <div className="container  valign-wrapper">
                     <div className="row">
+                        <div className="col s12 m12 right-align" style={{ margin: '20px 0' }}>
+                            <a className={user ? 'waves-effect waves-light btn-small blue left' : 'waves-effect waves-light btn-small left'} onClick={() => Router.replace("/")}><AiTwotoneHome /></a>&nbsp;
+                    <a className={!user ? "waves-effect waves-light btn-small modal-trigger" : "waves-effect waves-light btn-small modal-trigger blue"} href="#modal1">About</a>&nbsp;
+                    <a className={user ? "btn-small blue notification dropdown-trigger" : "btn-small notification dropdown-trigger"} data-target='dropdown1'><MdNotifications /><span class="badgen red">1</span></a>
+                        </div>
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><a >Welcome</a></li>
+                        </ul>
                         <div className="col s12 m12">
                             {children}
                         </div>
