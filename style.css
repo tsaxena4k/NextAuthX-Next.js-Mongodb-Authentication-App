@@ -1,3 +1,6 @@
+body{
+    background:#80cbc4;
+}
 a{
     text-decoration: none;
     cursor: pointer;
@@ -26,4 +29,17 @@ a{
     padding: 0px 10px;
     border-radius: 50%;
     color: white;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating){
+    color:teal;
+    text-decoration: underline;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover{
+    color: red;
+}
+.dropdown-menu{
+    width: 230px !important;
+    top:4.7rem !important;
+    border-radius: 10px !important;
+    height: 20rem !important;
 }
