@@ -21,22 +21,31 @@ export default function Layout({ children }) {
                 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             </Head>
-            <main className={user ? "#80cbc4 blue lighten-3" : "#80cbc4 teal lighten-3"}>
+            <main>
+                <nav>
+                    <div className="nav-wrapper teal">
+                        <a href="https://github.com/tsaxena4k/Next.js-Mongodb-Authentication-App" target="_blank" className="brand-logo left tooltipped" data-position="bottom" data-tooltip="Github Repo"><FaGithub/></a>
+                        <ul id="nav-mobile" className="right">
+                            <li><a className={'waves-effect waves-light btn-small tooltipped'} data-position="bottom" data-tooltip="Home" onClick={() => Router.replace("/")}><AiTwotoneHome /></a></li>
+                            <li><a className={"waves-effect waves-light btn-small modal-trigger"} href="#modal1">About</a></li>
+                            <li><a className={"btn-small notification dropdown-trigger"} data-target='dropdown1'><MdNotifications /><span className="badgen red">1</span></a></li>
+                        </ul>
+                    </div>
+                </nav>
                 <div className="container  valign-wrapper">
                     <div className="row">
-                        <div className="col s12 m12 right-align" style={{ margin: '20px 0' }}>
-                            <a className={user ? 'waves-effect waves-light btn-small blue left' : 'waves-effect waves-light btn-small left'} onClick={() => Router.replace("/")}><AiTwotoneHome /></a>&nbsp;
-                    <a className={!user ? "waves-effect waves-light btn-small modal-trigger" : "waves-effect waves-light btn-small modal-trigger blue"} href="#modal1">About</a>&nbsp;
-                    <a className={user ? "btn-small blue notification dropdown-trigger" : "btn-small notification dropdown-trigger"} data-target='dropdown1'><MdNotifications /><span class="badgen red">1</span></a>
-                        </div>
-                        <ul id='dropdown1' class='dropdown-content'>
-                            <li><a >Welcome</a></li>
-                        </ul>
                         <div className="col s12 m12">
                             {children}
                         </div>
                     </div>
                 </div>
+                <ul id='dropdown1' className='dropdown-content dropdown-menu'>
+                    <li>
+                        <img src="https://scontent.fdel25-1.fna.fbcdn.net/v/t1.0-9/119100373_1478954398979631_272182958440296923_o.jpg?_nc_cat=103&ccb=2&_nc_sid=09cbfe&_nc_ohc=PWiRytDUkykAX-Cm1BG&_nc_ht=scontent.fdel25-1.fna&oh=0850bf94c6b52a3edd41f5d179886cb2&oe=5FB837AD " className="circle responsive-img"/>
+                        <span>Hey! Welcome</span>
+                    </li>
+                    <li className="divider" tabindex="-1"></li>
+                </ul>
                 <div id="modal1" className="modal modal-fixed-footer">
                     <div className="modal-content" style={{ backgroundImage: `url(${"https://barbarashdwallpapers.com/wp-content/uploads/2015/05/White-wave-pattern-wallpaper-1.jpg"})` }}>
                         <div className="right-align" style={{ fontSize: '2rem' }}>
@@ -67,20 +76,21 @@ export default function Layout({ children }) {
             </main>
 
             <style jsx>{`
-                    main{
-                        position:absolute;
-                        top:0px;
-                        left:0px;
-                        right:0px;
-                        bottom:0px;
-                    }
                     .container{
-                        position:absolute;
-                        top:0px;
-                        left:0px;
-                        right:0px;
-                        bottom:0px;
-                    }             
+                        margin:2rem auto;
+                    }    
+                    .dropdown-content li{
+                        display:flex;
+                        padding:5px;
+                    }  
+                    .dropdown-content li img{
+                        width:50px;
+                    } 
+                    .nav-wrapper .brand-logo{
+                        font-size:2.7rem;
+                        margin:5px;
+                        color:#7ed;
+                    }
                 `}</style>
         </>
     );
