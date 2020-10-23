@@ -24,7 +24,7 @@ export default function Layout({ children }) {
             <main>
                 <nav>
                     <div className="nav-wrapper teal">
-                        <a href="https://github.com/tsaxena4k/Next.js-Mongodb-Authentication-App" target="_blank" className="brand-logo left tooltipped" data-position="bottom" data-tooltip="Github Repo"><FaGithub/></a>
+                        <a href="https://github.com/tsaxena4k/Next.js-Mongodb-Authentication-App" target="_blank" className="brand-logo btn left tooltipped" data-position="bottom" data-tooltip="Github Repo"><FaGithub/></a>
                         <ul id="nav-mobile" className="right">
                             <li><a className={'waves-effect waves-light btn-small tooltipped'} data-position="bottom" data-tooltip="Home" onClick={() => Router.replace("/")}><AiTwotoneHome /></a></li>
                             <li><a className={"waves-effect waves-light btn-small modal-trigger"} href="#modal1">About</a></li>
@@ -44,7 +44,7 @@ export default function Layout({ children }) {
                         <img src="https://scontent.fdel25-1.fna.fbcdn.net/v/t1.0-9/119100373_1478954398979631_272182958440296923_o.jpg?_nc_cat=103&ccb=2&_nc_sid=09cbfe&_nc_ohc=PWiRytDUkykAX-Cm1BG&_nc_ht=scontent.fdel25-1.fna&oh=0850bf94c6b52a3edd41f5d179886cb2&oe=5FB837AD " className="circle responsive-img"/>
                         <span>Hey! Welcome</span>
                     </li>
-                    <li className="divider" tabindex="-1"></li>
+                    <li className="divider" tabIndex="-1"></li>
                 </ul>
                 <div id="modal1" className="modal modal-fixed-footer">
                     <div className="modal-content" style={{ backgroundImage: `url(${"https://barbarashdwallpapers.com/wp-content/uploads/2015/05/White-wave-pattern-wallpaper-1.jpg"})` }}>
@@ -88,8 +88,9 @@ export default function Layout({ children }) {
                     } 
                     .nav-wrapper .brand-logo{
                         font-size:2.7rem;
-                        margin:5px;
-                        color:#7ed;
+                        margin:10px;
+                        color:black;
+                        border-radius:50%;
                     }
                 `}</style>
         </>
