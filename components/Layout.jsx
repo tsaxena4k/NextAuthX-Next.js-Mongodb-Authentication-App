@@ -79,7 +79,7 @@ export default function Layout({ children }) {
                     .container{
                         margin:2rem auto;
                     }    
-                    .dropdown-content li{
+                    .dropdown-content li:nth-child(1){
                         display:flex;
                         padding:5px;
                     }  
