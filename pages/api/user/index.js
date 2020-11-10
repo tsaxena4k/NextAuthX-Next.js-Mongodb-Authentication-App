@@ -48,7 +48,7 @@ handler.patch(upload.single('profilePicture'), async (req, res) => {
             $set: {
                 name: name,
                 bio: bio,
-                profilePicture: profilePicture
+                ...(profilePicture && { profilePicture })
             },
         },
     );
