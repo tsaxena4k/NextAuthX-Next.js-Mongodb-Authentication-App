@@ -17,15 +17,19 @@ const ProfileSection = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (isUpdating) return;
-        setIsUpdating(true);
+
+        console.log(nameRef.current.value);
+
         const formData = new FormData();
+
         if (profilePictureRef.current.files[0]) { formData.append('profilePicture', profilePictureRef.current.files[0]); }
         formData.append('name', nameRef.current.value);
         formData.append('bio', bioRef.current.value);
+
+
         const res = await fetch('/api/user', {
             method: 'PATCH',
-            body: formData,
+            body:formData,
         });
         if (res.status === 200) {
             const userData = await res.json();
@@ -63,12 +67,6 @@ const ProfileSection = () => {
         }
     };
 
-    async function sendVerificationEmail() {
-        await fetch('/api/user/email/verify', {
-            method: 'POST',
-        });
-    }
-
     return (
         <>
             <Head>
@@ -78,17 +76,6 @@ const ProfileSection = () => {
                 <h2>Edit Profile</h2>
                 {msg.message ? <p style={{ color: msg.isError ? 'red' : '#0070f3', textAlign: 'center' }}>{msg.message}</p> : null}
                 <form onSubmit={handleSubmit} className="col s12">
-                    {!user.emailVerified ? (
-                        <p>
-                            Your email has not been verify.
-                            {' '}
-                            {/* eslint-disable-next-line */}
-                            <a role="button" className="blue-text" onClick={sendVerificationEmail}>
-                                Send verification email
-                </a>
-                        </p>
-                    ) : null}
-
                     <div className="divider"></div>
                     <label htmlFor="name" className="input-field col s6">
                         Name
@@ -113,8 +100,8 @@ const ProfileSection = () => {
                         />
                     </label>
                     <label htmlFor="avatar">
-                        <span>Profile picture &nbsp; </span> 
-                         <div className="btn-small file-field input-field blue">
+                        <span>Profile picture &nbsp; </span>
+                        <div className="btn-small file-field input-field blue">
                             <span>Choose file</span>
                             <input
                                 type="file"
@@ -126,7 +113,7 @@ const ProfileSection = () => {
                         </div>
                     </label>
                     <br />
-                    <button disabled={isUpdating} type="submit" className="btn blue">Save</button>
+                    <button type="submit" className="btn blue">Save</button>
                 </form>
                 <form onSubmit={handleSubmitPasswordChange}>
                     <label htmlFor="oldpassword">
