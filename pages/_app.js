@@ -1,10 +1,13 @@
 import Layout from '../components/Layout';
-import '../style.css';
+import '../style.scss';
 
 export default function MyApp({ Component, pageProps }) {
+
     return (
-        <Layout>
-            <Component {...pageProps} />
-        </Layout>
+        <>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </>
     );
 }

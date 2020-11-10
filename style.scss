@@ -1,5 +1,11 @@
+$primary-color:#80cbc4;
+$secondary-color:#009688;
+
 body{
-    background:#80cbc4;
+    background: $primary-color;
+}
+.nav-wrapper{
+    background-color: $secondary-color ;
 }
 a{
     text-decoration: none;
