@@ -4,7 +4,7 @@ import { useCurrentUser } from '../lib/hooks';
 
 const ProfileSection = () => {
     const [user, { mutate }] = useCurrentUser();
-    const [isUpdating, setIsUpdating] = useState(false);
+    const [loading, isLoading] = useState(false);
     const nameRef = useRef();
     const bioRef = useRef();
     const profilePictureRef = useRef();
@@ -17,19 +17,15 @@ const ProfileSection = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        console.log(nameRef.current.value);
-
+        isLoading(true);
         const formData = new FormData();
-
         if (profilePictureRef.current.files[0]) { formData.append('profilePicture', profilePictureRef.current.files[0]); }
         formData.append('name', nameRef.current.value);
         formData.append('bio', bioRef.current.value);
 
-
         const res = await fetch('/api/user', {
             method: 'PATCH',
-            body:formData,
+            body: formData,
         });
         if (res.status === 200) {
             const userData = await res.json();
@@ -43,9 +39,11 @@ const ProfileSection = () => {
         } else {
             setMsg({ message: await res.text(), isError: true });
         }
+        isLoading(false);
     };
 
     const handleSubmitPasswordChange = async (e) => {
+        isLoading(true);
         e.preventDefault();
         const body = {
             oldPassword: e.currentTarget.oldPassword.value,
@@ -65,6 +63,7 @@ const ProfileSection = () => {
         } else {
             setMsg({ message: await res.text(), isError: true });
         }
+        isLoading(false);
     };
 
     return (
@@ -72,6 +71,9 @@ const ProfileSection = () => {
             <Head>
                 <title>Settings</title>
             </Head>
+            {loading ? <div className="progress" style={{ margin: 0 }}>
+                <div className="indeterminate"></div>
+            </div> : null}
             <section className="">
                 <h2>Edit Profile</h2>
                 {msg.message ? <p style={{ color: msg.isError ? 'red' : '#0070f3', textAlign: 'center' }}>{msg.message}</p> : null}
