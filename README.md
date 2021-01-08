@@ -103,7 +103,18 @@ Required environmental variables in this project include:
 
 <div align="center">
   
-![twitter](https://img.shields.io/twitter/follow/tsaxena4k?style=social) [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/tushar-saxena-94b742184/) [<img src="https://i.imgur.com/OgUDrnB.png" width="15"/> Instagram](https://www.instagram.com/tsaxena4k/)
+### `Come Find Me`
+
+[<img alt="Tushar | Twitter" width="22px" src="https://svgshare.com/i/Snh.svg" />][twitter]
+[<img alt="Tushar | LinkedIn" width="22px" src="https://svgshare.com/i/SoD.svg" />][linkedin]
+[<img alt="Tushar | Instagram" width="22px" src="https://svgshare.com/i/Sko.svg" />][instagram]
+[<img alt="Tuhsra | facebook" width="22px" src="https://svgshare.com/i/Snk.svg" />][facebook]
+[<img alt="Tuhsra | stackoverflow" width="22px" src="https://svgshare.com/i/Snj.svg" />][stackoverflow]
+[<img alt="Tuhsra | discord" width="22px" src="https://svgshare.com/i/Smt.svg" />][discord]
+[<img alt="Tuhsra | pinterest" width="22px" src="https://svgshare.com/i/SoQ.svg" />][pinterest]
+[<img alt="Tuhsra | dribble" width="22px" src="https://svgshare.com/i/Sni.svg" />][dribble]
+[<img alt="Tuhsra | codepen" width="22px" src="https://svgshare.com/i/Sn1.svg" />][codepen]
+
   
 </div>  
 
