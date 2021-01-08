@@ -99,8 +99,6 @@ Required environmental variables in this project include:
 - `process.env.MONGODB_DB` The name of the MongoDB database to be used.
 - `process.env.CLOUDINARY_URL` (optional, Cloudinary **only**) Cloudinary environment variable for configuration. See [this](https://cloudinary.com/documentation/node_integration#configuration).
 
-<h3 align="center">Connect Now</h3>
-
 <div align="center">
   
 ### `Come Find Me`
