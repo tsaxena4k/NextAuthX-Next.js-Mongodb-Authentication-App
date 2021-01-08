@@ -127,3 +127,13 @@ Required environmental variables in this project include:
   [MIT](LICENSE)
   
 </div>
+
+[twitter]: https://twitter.com/tsaxena4k
+[instagram]: https://www.instagram.com/tsaxena4k/
+[linkedin]: https://www.linkedin.com/in/tushar-saxena-94b742184/
+[facebook]: https://www.facebook.com/tushar.saxena.56232
+[stackoverflow]: https://stackoverflow.com/users/14212597/tushar-saxena
+[discord]: https://discord.gg/cvqaGJ
+[pinterest]: https://in.pinterest.com/tusharsaxena562/
+[dribble]: https://dribbble.com/tsaxen3k
+[codepen]: https://codepen.io/tsaxena4k
