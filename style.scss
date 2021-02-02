@@ -49,3 +49,12 @@ a{
     border-radius: 10px !important;
     height: 20rem !important;
 }
+.preloader-wrapper.small{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-bottom: -3px;
+    .spinner-green, .spinner-green-only{
+        border-color: #fff;
+    }
+}
