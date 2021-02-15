@@ -10,11 +10,11 @@
 
 ![github last commit](https://img.shields.io/github/last-commit/tsaxena4k/Next.js-Mongodb-Authentication-App?style=flat-square)  ![github release](https://img.shields.io/github/release-date/tsaxena4k/Next.js-Mongodb-Authentication-App?style=flat-square)  ![repo size](https://img.shields.io/github/repo-size/tsaxena4k/Next.js-Mongodb-Authentication-App?style=flat-square)
 
-An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/) , [**MongoDB**](https://www.mongodb.com/) and [**Passport.js**](http://www.passportjs.org/)
+An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/), [**MongoDB**](https://www.mongodb.com/) and [**Passport.js**](http://www.passportjs.org/)
 
 :rainbow: [Check out the demo](https://next-js-mongodb-authentications-app.vercel.app/)
 
-<h6><em>Drop a ⭐ if you Like it</em></h6>
+<h6><em>Drop a ⭐ if you like it</em></h6>
 
 </div>
 
