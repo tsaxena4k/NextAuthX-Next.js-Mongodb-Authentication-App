@@ -43,30 +43,40 @@ An Authentication app build with [**Next.js**](https://github.com/zeit/next.js/)
 <h2 align="center">📷 Screenshots</h2>
 
 <div align="center">
-  
+
 <h3 align="center">Home</h3>
+  
+Before Login             |  After Login
+:-------------------------:|:-------------------------:
+<img src="./Readme SS/Home.png" alt="Home Before Login" />  |  <img src="./Readme SS/Home2.png" alt="Home Before Login" />
 
-<img src="https://i.ibb.co/WpChDPd/Home-before-login.jpg" alt="Home Before Login" />
+<h3 align="center">Home (Before Login)</h3>
 
+<img src="./Readme SS/Home.png" alt="Home Before Login" />
+  
 <h3 align="center">Login</h3>
 
-<img src="https://i.ibb.co/8KBScRy/login.jpg" alt="Login" />
+<img src="./Readme SS/Login.png" alt="Login" />
 
 <h3 align="center">Sign up</h3>
 
-<img src="https://i.ibb.co/ynWnRpq/signup.jpg" alt="Sign up" />
+<img src="./Readme SS/Signup.png" alt="Sign up" />
 
-<h3 align="center">Home After Login</h3>
+<h3 align="center">Home (After Login)</h3>
 
-<img src="https://i.ibb.co/nz8t7SC/Home-after-login.jpg" alt="Home After Login" />
+<img src="./Readme SS/Home2.png" alt="Home After Login" />
 
 <h3 align="center">Profile</h3>
 
-<img src="https://i.ibb.co/251QHMn/profile.jpg" alt="Profile" />
+<img src="./Readme SS/Profile.png" alt="Profile" />
 
 <h3 align="center">Edit Profile</h3>
 
-<img src="https://i.ibb.co/cTX1C7h/edit-profile.jpg" alt="Edit Profile" />
+<img src="./Readme SS/Settings.png" alt="Edit Profile" />
+  
+<h3 align="center">About</h3>
+
+<img src="./Readme SS/About.png" alt="About" />
 
 </div>
 
