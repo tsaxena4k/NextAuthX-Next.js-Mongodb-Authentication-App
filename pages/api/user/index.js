@@ -11,7 +11,7 @@ const {
     hostname: cloud_name,
     username: api_key,
     password: api_secret,
-} = new URL(process.env.CLOUDINARY_URL);
+} = new URL("cloudinary://524888753825321:TNtoyCD-f65uBuLCT3Jl734brZo@ddczon2vp");
 
 cloudinary.config({
     cloud_name,

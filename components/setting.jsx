@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useCurrentUser } from '../lib/hooks';
+import { useRouter } from 'next/router'
 
 const ProfileSection = () => {
     const [user, { mutate }] = useCurrentUser();
@@ -9,10 +10,15 @@ const ProfileSection = () => {
     const bioRef = useRef();
     const profilePictureRef = useRef();
     const [msg, setMsg] = useState({ message: '', isError: false });
+    const router = useRouter();
 
     useEffect(() => {
-        nameRef.current.value = user.name;
-        bioRef.current.value = user.bio;
+        if (!user) {
+            router.push('/');
+        } else {
+            nameRef.current.value = user.name;
+            bioRef.current.value = user.bio;
+        }
     }, [user]);
 
     const handleSubmit = async (event) => {
@@ -40,6 +46,7 @@ const ProfileSection = () => {
             setMsg({ message: await res.text(), isError: true });
         }
         isLoading(false);
+        setTimeout(() => setMsg(''), 2500);
     };
 
     const handleSubmitPasswordChange = async (e) => {
@@ -64,6 +71,7 @@ const ProfileSection = () => {
             setMsg({ message: await res.text(), isError: true });
         }
         isLoading(false);
+        setTimeout(() => setMsg(''), 2500);
     };
 
     return (
@@ -71,74 +79,43 @@ const ProfileSection = () => {
             <Head>
                 <title>Settings</title>
             </Head>
-            {loading ? <div className="progress" style={{ margin: 0 }}>
-                <div className="indeterminate"></div>
-            </div> : null}
-            <section className="">
-                <h2>Edit Profile</h2>
-                {msg.message ? <p style={{ color: msg.isError ? 'red' : '#0070f3', textAlign: 'center' }}>{msg.message}</p> : null}
-                <form onSubmit={handleSubmit} className="col s12">
-                    <div className="divider"></div>
-                    <label htmlFor="name" className="input-field col s6">
-                        Name
-                            <input
-                            required
-                            id="name"
-                            name="name"
-                            type="text"
-                            placeholder="Your name"
-                            ref={nameRef}
-                        />
-                    </label>
-                    <label htmlFor="bio" className="input-field col s6">
-                        Bio
-                        <textarea
-                            id="bio"
-                            name="bio"
-                            type="text"
-                            placeholder="Bio"
-                            ref={bioRef}
-                            className="materialize-textarea"
-                        />
-                    </label>
-                    <label htmlFor="avatar">
-                        <span>Profile picture &nbsp; </span>
-                        <div className="btn-small file-field input-field blue">
-                            <span>Choose file</span>
-                            <input
-                                type="file"
-                                id="avatar"
-                                name="avatar"
-                                accept="image/png, image/jpeg"
-                                ref={profilePictureRef}
-                            />
-                        </div>
-                    </label>
-                    <br />
-                    <button type="submit" className="btn blue">Save</button>
+            <div className='card-form'>
+                {msg.message && <div class="alert alert-danger" role="alert">
+                    {msg.message}
+                </div>}
+                <form onSubmit={handleSubmit}>
+                    <div class="mb-3">
+                        <label for="userName" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="userName" id="userName" placeholder="Your Name" ref={nameRef} />
+                    </div>
+                    <div class="mb-3">
+                        <label for="bio" class="form-label">Bio</label>
+                        <textarea class="form-control" id="bio" name="bio" placeholder='Your Bio' ref={bioRef} rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="avatar" class="form-label">Profile Picture</label>
+                        <input class="form-control" type="file" id="avatar" name="avatar" accept='image/png, image/jpeg' ref={profilePictureRef} />
+                    </div>
+                    <div className="text-center mb-3"><button type="submit" class="btn btn-primary">{loading ? <div class="spinner-border" role="status" style={{ width: '1.5rem', height: '1.5rem' }}>
+                        <span class="visually-hidden">Loading...</span>
+                    </div> : <>Save</>}</button></div>
                 </form>
-                <form onSubmit={handleSubmitPasswordChange}>
-                    <label htmlFor="oldpassword">
-                        Old Password
-            <input
-                            type="password"
-                            name="oldPassword"
-                            id="oldpassword"
-                            required
-                        />
-                    </label>
-                    <label htmlFor="newpassword">
-                        New Password
-            <input
-                            type="password"
-                            name="newPassword"
-                            id="newpassword"
-                            required
-                        />
-                    </label>
-                    <button type="submit" className="btn blue">Change Password</button>
+            </div>
+            <div className='card-form'>
+                <form class="row g-3" onSubmit={handleSubmitPasswordChange}>
+                    <div class="col-md-6">
+                        <label for="oldPassword" class="form-label">Old Password</label>
+                        <input type="password" class="form-control" id="oldPassword" name='oldPassword' required />
+                    </div>
+                    <div class="col-md-6">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="newPassword" name='newPassword' required />
+                    </div>
+                    <div className="col-sm-12 text-center">
+                        <button type="submit" className="btn btn-danger">Change Password</button>
+                    </div>
                 </form>
-            </section>
+            </div>
         </>
     );
 };

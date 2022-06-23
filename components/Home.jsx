@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useUser } from '../lib/hooks';
 import AfterLogin from '../components/AfterLogin';
-import {useState} from 'react'
+import { useState } from 'react';
 
 export default function Home() {
     const [user, { mutate }] = useUser();
@@ -13,68 +13,67 @@ export default function Home() {
         });
         // set the user state to null
         mutate(null);
-        M.toast({ html: 'Logged out' ,classes:'toast'})
         isLoading(false);
     };
     return (
         <>
-            <div className="card horizontal z-depth-5">
-                <div
-                    className="card-image hide-on-small-only"
-                    style={{ display: "flex" }}
-                >
-                    {!user ? (<>
-                        <img
-                            src="https://cdn.dribbble.com/users/2251626/screenshots/6831464/welcome_dribbble.png"
-                            className="responsive-img" alt=""
-                        />
-                    </>) : (<img
-                        src="https://cdn.dribbble.com/users/1090020/screenshots/10535970/media/766c2d3d6101fca5d441420a6412abf1.png"
-                        className="responsive-img" alt=""
-                    />)}
-
-                </div>
-                <div className="card-stacked center-align">
-                    {loading ? <div className="progress white" style={{margin:0}}>
-                        <div className="indeterminate blue"></div>
-                    </div> : null}
-                    <div className="card-content">
-                        <h2 style={{ marginTop: '0' }}><span style={{ fontWeight: 'bolder', color: `${user ? '#2196f3' : '#7ed'}`, textShadow: '2px 2px black' }}>Hello </span>{!user ? 'Stranger' : user.name}</h2>
-                        {!user ? <div className="card-title und">Welcome to <strong><a onClick={() => M.toast({ html: 'Coming soon', classes: 'toast' })}>Tushar.dev</a></strong></div> : null}
-                        <div className="col s12 m12">
-                            {!user ? (<>
-                                <div className="card-panel #80cbc4 teal lighten-2">
-                                    <span className="white-text" style={{ fontSize: '1.2rem' }}>This is an Authentication build in <a href="https://nextjs.org/" target="_blank" style={{ textDecoration: 'underline', color: "white" }}>Next.js</a> using <a href="http://www.passportjs.org/" target="_blank" style={{ textDecoration: 'underline', color: "white" }}>Passport.js</a> and <a href="https://www.mongodb.com/" target="_blank" style={{ textDecoration: 'underline', color: "white" }}>Mongodb </a>
-                                . It is a fully functional & ready to use module build for your next web application.This is template 0.0 I will be pushing more new personalized templates soon.<br /><br />-Till then go on try it around, I hope you like it-</span>
-                                </div>
-                            </>) : (<AfterLogin />)}
-                        </div>
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        {!user ? (<>
+                            <img
+                                src='/Images/Home.png'
+                                className="img-fluid" alt=""
+                            />
+                        </>) : (<img
+                            src="/Images/Home2.png"
+                            className="img-fluid" alt=""
+                        />)}
                     </div>
-
-                    <div className="card-action">
-                        {!user ? (
-                            <>
-                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Link href="/login">
-                                        <a className="waves-effect waves-light btn">Log in</a>
-                                    </Link>
-                                    <Link href="/signup">
-                                        <a className="waves-effect waves-light btn">Sign up</a>
-                                    </Link>
+                    <div class="col-md-7">
+                        <div class="card-body h-100 text-center">
+                            <div className='row h-100' style={{ flexDirection: 'column', justifyContent: 'space-between' }}>
+                                <div className='col-sm-12'>
+                                    <h2 style={{ marginTop: '0' }}><span style={{ fontWeight: 'bolder', color: `${user ? '#5c9eff' : '#5c9eff'}`, textShadow: '2px 2px black' }}>Hello </span>{!user ? 'Stranger' : user.name}</h2>
+                                    <p>Welcome to <strong>Nextjs Auth</strong></p>
                                 </div>
-                            </>
-                        ) : (
-                                <>
+                                <div className='col-sm-12'>
+                                    {!user ? (<>
+                                        <div className="card-text">
+                                            This is an Authentication build in <a href="https://nextjs.org/" target="_blank" style={{ textDecoration: 'underline', color: "" }}>Next.js</a> using <a href="http://www.passportjs.org/" target="_blank" style={{ textDecoration: 'underline', color: "" }}>Passport.js</a> and <a href="https://www.mongodb.com/" target="_blank" style={{ textDecoration: 'underline', color: "" }}>Mongodb </a>
+                                            . It is a fully functional & ready to use module build for your next web application.This is template 0.0 I will be pushing more new personalized templates soon.
+                                        </div>
+                                        <div class="alert alert-primary my-2" role="alert">
+                                            Till then go on try it around, I hope you like it
+                                        </div>
+                                    </>) : (<AfterLogin />)}
+                                </div>
+                                <div className='col-sm-12' style={{ alignSelf: 'end' }}>
+                                    {!user ? (
+                                        <>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <Link href="/login">
+                                                    <a className="btn btn-primary">Log in</a>
+                                                </Link>
+                                                <Link href="/signup">
+                                                    <a className="btn btn-primary">Sign up</a>
+                                                </Link>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <>
 
-                                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                        <Link href="/user/[userId]" as={`/user/${user._id}`}>
-                                            <a className="waves-effect waves-light btn blue">Profile</a>
-                                        </Link>
-                                        <a role="button" onClick={handleLogout} className="waves-effect waves-light btn blue">Logout</a>
-                                    </div>
-                                </>
-                            )}
+                                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                <Link href="/user/[userId]" as={`/user/${user._id}`}>
+                                                    <a className="btn btn-primary">Profile</a>
+                                                </Link>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,24 +1,21 @@
 import Signup from '../components/Signup';
 
-export default function signup(){
-    return (
-        <div className="card horizontal z-depth-5">
-          <div
-            className="card-image hide-on-small-only"
-            style={{
-              display: "flex",
-              background: "#f2e7de",
-              alignItems: "flex-end"
-            }}
-          >
-            
-            <img
-              src="https://cdn.dribbble.com/users/1090020/screenshots/14073692/media/d56030d03319818f9a9bd1b1c8152dae.png"
-              className="responsive-img"
-              style={{}} alt="student"
-            />
-          </div>
-          <Signup/>
+export default function signup() {
+  return (
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-5">
+          <img src="Images/Signup.png"
+
+            class="img-fluid" />
         </div>
-      );
+        <div class="col-md-7">
+          <div class="card-body">
+            <h3 class="card-title text-center">Sign up</h3>
+            <Signup />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

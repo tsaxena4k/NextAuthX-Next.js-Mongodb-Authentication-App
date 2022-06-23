@@ -19,49 +19,36 @@ export default function UserPage({ user }) {
             <Head>
                 <title>{name}</title>
             </Head>
-            <div className="card horizontal z-depth-5 large">
-                <div
-                    className="card-image hide-on-small-only"
-                    style={{background:'#8de'}}
-                    >   
-                    <img
-                        src={profilePicture}
-                        width="200"
-                        height="200"
-                        alt={name}
-                        style={{padding:'2rem',borderRadius:'50%',borderBottom:'2px solid #29f'}}
-                    />
-                </div>
-                <div className="card-stacked center-align">
-                    <div className="card-content">
-                        <div>
-                            <section>
-                                <div className="hide-on-med-and-up">
-                                    <img src={profilePicture} className="circle" width="150" style={{border:'5px solid #29f'}}/>
-                                </div>    
-                                    <h2>{name}</h2>
-                                <div className="col s12 m12">
-                                    <div className="card-panel blue left-align white-text" style={{fontSize:'1rem'}}>
-                                    
-                                    <p><strong>Bio :</strong> {bio}</p>
-                                    
-                                    <p>
-                                    <strong>Email :</strong>  {email}
-                                    </p>
-                        
-                                    </div>
-                                </div>
-                                
-
-                            </section>
-                        </div>
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4 p-3 d-flex align-items-center" style={{backgroundColor:'#5c9eff'}}>
+                        <img src={profilePicture} class="img-fluid border border-2" style={{height:'auto'}}/>
                     </div>
-                    <div className="card-action">
-                        {isCurrentUser && (
-                            <Link href="/setting">
-                                <a className="waves-effect waves-light btn-small blue">Edit</a>
-                            </Link>
-                        )}
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h3 class="card-title text-center">Profile</h3>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h3 className='card-title'>Name</h3>
+                                    <div class="card-text">{name}</div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h3 className='card-title'>Bio</h3>
+                                    <div class="card-text">{bio}</div>
+                                </div>
+                            </div>
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h3 className='card-title'>Email</h3>
+                                    <div class="card-text">{email}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='card-action text-center mb-3'>
+                            <Link href='/setting'><a className='btn btn-primary'>Edit</a></Link>
+                        </div>
                     </div>
                 </div>
             </div>

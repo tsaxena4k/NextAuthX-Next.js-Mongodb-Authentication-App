@@ -36,7 +36,6 @@ export default function Login() {
                 const userObj = await res.json();
                 // writing our user object to the state
                 mutate(userObj);
-                M.toast({ html: 'Signed up', classes: 'blue' })
             } else {
                 isLoading(false);
                 setErrorMsg(await res.text());
@@ -45,92 +44,35 @@ export default function Login() {
     };
     return (
         <>
-            <div className="card-stacked center-align">
-                {loading ? <div className="progress" style={{ margin: 0 }}>
-                    <div className="indeterminate"></div>
-                </div> : null}
-                <div className="card-content">
-                    <div className="row">
-                        <div className="col s12 m12">
-                            <div className="card z-depth-0">
-                                <h4 style={{ fontWeight: 'bolder' }}>Create account</h4>
-                                <div className="container">
-                                    <div className="card-container">
-                                        <div className="row">
-                                            <div className="card-content">
-                                                <form onSubmit={handleSubmit}>
-                                                    {errorMsg ? (
-                                                        <p style={{ color: "red" }}>{errorMsg}</p>
-                                                    ) : null}
-                                                    <div className="input-field col s12">
-                                                        <i className="prefix">
-                                                            <FaUserCircle />
-                                                        </i>
-                                                        <input
-                                                            id="name"
-                                                            type="text"
-                                                            className="validate"
-                                                            name="name"
-                                                            required
-                                                        />
-                                                        <label htmlFor="name">Name</label>
-                                                    </div>
-                                                    <div className="input-field col s12">
-                                                        <i className="prefix">
-                                                            <MdEmail />
-                                                        </i>
-                                                        <input
-                                                            id="email"
-                                                            type="text"
-                                                            className="validate "
-                                                            name="email"
-                                                            required
-                                                        />
-                                                        <label htmlFor="email">Email</label>
-                                                    </div>
-                                                    <div className="input-field col s12">
-                                                        <i className="prefix">
-                                                            <RiLockPasswordFill />
-                                                        </i>
-                                                        <input
-                                                            id="password"
-                                                            type="password"
-                                                            className="validate"
-                                                            name="password"
-                                                            required
-                                                        />
-                                                        <label htmlFor="password">Password</label>
-                                                    </div>
-                                                    <div className="input-field col s12">
-                                                        <i className="prefix">
-                                                            <RiLockPasswordLine />
-                                                        </i>
-                                                        <input
-                                                            id="cpassword"
-                                                            type="password"
-                                                            className="validate"
-                                                            name="cpassword"
-                                                            required
-                                                        />
-                                                        <label htmlFor="cpassword">Confirm Password</label>
-                                                    </div>
-                                                    <div className="col s12" style={{ marginBottom: '1rem' }}>
-                                                        <button className="waves-effect waves-light btn col s12" type="submit">
-                                                            sign up
-                                            </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div className="card-action col s12">
-                                                <p>Already have an account<Link href="/login"> Login here.</Link></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div className="card-form d-flex justify-content-center">
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        {errorMsg ? <p style={{ color: "red" }}>{errorMsg}</p> : null}
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="Name" class="form-label"><FaUserCircle /> Name</label>
+                        <input type="text" class="form-control" id="name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label"><MdEmail /> Email address</label>
+                        <input type="email" class="form-control" id="email" required />
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label"><RiLockPasswordFill /> Password</label>
+                        <input type="password" class="form-control" id="password" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="cpassword" class="form-label"><RiLockPasswordFill /> Confirm Password</label>
+                        <input type="password" class="form-control" id="cpassword" required />
+                    </div>
+                    <div className="mb-3">
+                        <p>Already registered ? <Link href="/login">Login</Link></p>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-3">{loading ? <div class="spinner-border" role="status" style={{ width: '1.5rem', height: '1.5rem' }}>
+                        <span class="visually-hidden">Loading...</span>
+                    </div> : <>Sign up</>}</button>
+                </form>
             </div>
         </>
     );

@@ -1,60 +1,24 @@
-$primary-color:#80cbc4;
-$secondary-color:#009688;
+$primary-color: #aed9fa;
+$secondary-color: #009688;
 
-body{
+body {
     background: $primary-color;
 }
-.nav-wrapper{
-    background-color: $secondary-color ;
+.nav-wrapper {
+    background-color: $secondary-color;
 }
-a{
+
+a {
+    color: #4f93f9;
     text-decoration: none;
-    cursor: pointer;
-    color: teal;
 }
-.und a:hover{
-    text-decoration: underline;
+
+.nav-item {
+    display: flex;
+    align-items: center;
 }
-.toast{
-    padding: 10px;
-}
-#title{
-    padding: 0;
-    margin: 0;
-}
-.row,.horizontal{
-    margin-bottom: 0;
-}
-.notification{
-    position: relative;
-}
-.badgen{
-    position: absolute;
-    top: -15px;
-    right: -10px;
-    padding: 0px 10px;
-    border-radius: 50%;
-    color: white;
-}
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating){
-    color:teal;
-    text-decoration: underline;
-}
-.card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover{
-    color: red;
-}
-.dropdown-menu{
-    width: 230px !important;
-    top:4.7rem !important;
-    border-radius: 10px !important;
-    height: 20rem !important;
-}
-.preloader-wrapper.small{
-    width: 20px;
-    height: 20px;
-    margin-left: 10px;
-    margin-bottom: -3px;
-    .spinner-green, .spinner-green-only{
-        border-color: #fff;
-    }
+
+.img-fluid {
+    height: 100%;
+    object-fit: cover;
 }
