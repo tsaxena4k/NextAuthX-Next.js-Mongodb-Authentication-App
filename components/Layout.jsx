@@ -32,7 +32,7 @@ export default function Layout({ children }) {
             <header>
                 <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="/">Nextjs Auth</a>
+                        <a class="navbar-brand" href="/">Math project</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -43,8 +43,26 @@ export default function Layout({ children }) {
                                 </li>
                                 <li>
                                     <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        About
+                                        Search
                                     </a>
+                                </li>
+                                <li>
+                                    <Link class="nav-link" href="/">
+                                    <a class="nav-link">
+                                        About us
+                                    </a></Link>
+                                </li>
+                                <li>
+                                    <Link class="nav-link" href="/">
+                                    <a class="nav-link">
+                                         Poster
+                                    </a></Link>
+                                </li>
+                                <li>
+                                    <Link class="nav-link" href="/">
+                                    <a class="nav-link">
+                                        Contact us
+                                    </a></Link>
                                 </li>
                             </ul>
                             {user && <button className='btn btn-primary' onClick={handleLogout}>Logout</button>}

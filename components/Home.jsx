@@ -35,7 +35,7 @@ export default function Home() {
                             <div className='row h-100' style={{ flexDirection: 'column', justifyContent: 'space-between' }}>
                                 <div className='col-sm-12'>
                                     <h2 style={{ marginTop: '0' }}><span style={{ fontWeight: 'bolder', color: `${user ? '#5c9eff' : '#5c9eff'}`, textShadow: '2px 2px black' }}>Hello </span>{!user ? 'Stranger' : user.name}</h2>
-                                    <p>Welcome to <strong>Nextjs Auth</strong></p>
+                                    <p>Welcome to <strong>our math project</strong></p>
                                 </div>
                                 <div className='col-sm-12'>
                                     {!user ? (<>

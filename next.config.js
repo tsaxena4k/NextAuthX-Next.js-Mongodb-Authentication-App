@@ -7,4 +7,3 @@ module.exports = {
         CLOUDINARY_URL:process.env.CLOUDINARY_URL
     }
 }
-    
