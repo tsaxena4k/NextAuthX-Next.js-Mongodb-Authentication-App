@@ -9,7 +9,7 @@ const handler = nextConnect();
 
 handler.use(middleware); // see how we're reusing our middleware
 
-// POST /api/users
+// POST /api/posters
 handler.post(async (req, res) => {
   const { email, fname, lname, phone, createby, createdate } = req.body;
   if (!email || !fname || !lname || !phone) {

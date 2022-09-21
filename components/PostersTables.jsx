@@ -2,26 +2,61 @@ import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useCurrentUser } from '../lib/hooks';
 import { useRouter } from 'next/router';
-import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon, MapIcon, BuildingLibraryIcon} from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
-const DashboardSection = () => {
+export async function getServerSideProps() {
+    const res = await fetch("/api/fetchPosters", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+    const allPosters = [];
+    if (res.status === 200){
+        allPosters = await res.json();
+    }
+    console.log('fsdfsa');
+    return {
+      props: { allPosters },
+    };
+  }
+
+const DashboardSection = async (allPosters) => {
+    console.log(allPosters);
     const [user, { mutate }] = useCurrentUser();
+    const [posters, { mutatePosters }] = useState();
     const [loading, isLoading] = useState(false);
     const nameRef = useRef();
     const bioRef = useRef();
     const profilePictureRef = useRef();
     const [msg, setMsg] = useState({ message: '', isError: false });
     const router = useRouter();
+    const res = await fetch("/api/fetchPosters", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+    console.log(res);
+   
 
-    /**useEffect(() => {
-        if (!user) {
-            router.push('/');
-        } else {
-            nameRef.current.value = user.name;
-            bioRef.current.value = user.bio;
+    const getposters = async (e) => {
+        e.preventDefault();
+        updateLoad(true);
+        const res = await fetch("/api/fetchPosters", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        });
+        if (res.status === 201) {
+            setMsgAck(true);
+            setTimeout(() => setMsgAck(false), 2500)
+        } else if (res.status === 200){
+            const allPosters = await res.json();
+            // writing our user object to the state
+            mutatePosters(allPosters);
+        }else {
+            setErrorMsg(await res.text());
         }
-    }, [user]);**/
+        updateLoad(false);
+        var msgForm = document.getElementById("msgForm");
+        msgForm.reset();
+    };
 
     const people = [
 
@@ -46,9 +81,9 @@ const DashboardSection = () => {
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
-                    <h1 className="text-xl font-semibold text-gray-900">Users</h1>
+                    <h1 className="text-xl font-semibold text-gray-900">Posters</h1>
                     <p className="mt-2 text-sm text-gray-700">
-                        A list of all the users in your account including their name, title, email and role.
+                        A list of all the Posters added including their name, phone, email.
                     </p>
                     </div>
                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -66,21 +101,21 @@ const DashboardSection = () => {
                                 Name
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                Title
+                                Email
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                Status
+                                Phone
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                Role
+                                Added by
                                 </th>
-                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                <span className="sr-only">Edit</span>
+                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                Added Date
                                 </th>
                             </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                            {people.map((person) => (
+                            {(people)?people.map((person) => (
                                 <tr key={person.email}>
                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                     <div className="flex items-center">
@@ -109,7 +144,9 @@ const DashboardSection = () => {
                                     </a>
                                 </td>
                                 </tr>
-                            ))}
+                            )):<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            Loading
+                            </th>}
                             </tbody>
                         </table>
                         </div>
@@ -122,12 +159,12 @@ const DashboardSection = () => {
 };
 
 
-const DashboardPage = () => {
-    const [user] = useCurrentUser();
-    if (!user) {
+const DashboardPage = (allPosters) => {
+    console.log('allPosters');
+    if (!allPosters) {
         return (
             <>
-                <p>Please sign in</p>
+                <p>Loading</p>
             </>
         );
     }
