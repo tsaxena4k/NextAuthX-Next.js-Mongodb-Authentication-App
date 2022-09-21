@@ -23,11 +23,11 @@ const DashboardSection = () => {
     }, [user]);**/
 
     const navigation = [
-        { name: 'Dashboard', icon: HomeIcon, href: '#', current: true },
+        { name: 'Dashboard', icon: HomeIcon, href: '#', current: false },
         { name: 'Locations', icon: MapIcon, href: 'locations', count: 3, current: false },
         { name: 'Universities', icon: BuildingLibraryIcon, href: '#', count: 4, current: false },
-        { name: 'records requests', icon: CalendarIcon, href: 'records', current: false },
-        { name: 'Posters', icon: InboxIcon, href: 'posters', current: false },
+        { name: 'records requests', icon: CalendarIcon, href: '#', current: false },
+        { name: 'Posters', icon: InboxIcon, href: 'posters', current: true },
         { name: 'Rewards Rules', icon: ChartBarIcon, href: '#', count: 12, current: false },
       ]
       
