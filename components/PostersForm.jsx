@@ -25,11 +25,11 @@ const DashboardSection = () => {
 
     const [user, { mutate }] = useCurrentUser();   
     const navigation = [
-        { name: 'Dashboard', icon: HomeIcon, href: '#', current: true },
+        { name: 'Dashboard', icon: HomeIcon, href: 'dashboard', current: true },
         { name: 'Locations', icon: MapIcon, href: 'locations', count: 3, current: false },
-        { name: 'Universities', icon: BuildingLibraryIcon, href: '#', count: 4, current: false },
-        { name: 'records requests', icon: CalendarIcon, href: '#', current: false },
-        { name: 'Posters', icon: InboxIcon, href: '#', current: false },
+        { name: 'Universities', icon: BuildingLibraryIcon, href: 'universities', count: 4, current: false },
+        { name: 'records requests', icon: CalendarIcon, href: 'records', current: false },
+        { name: 'Posters', icon: InboxIcon, href: 'posters', current: false },
         { name: 'Rewards Rules', icon: ChartBarIcon, href: '#', count: 12, current: false },
     ];
     const [msg, setMsg] = useState({ message: '', isError: false });

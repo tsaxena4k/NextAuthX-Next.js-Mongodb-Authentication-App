@@ -4,59 +4,28 @@ import { useCurrentUser } from '../lib/hooks';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-export async function getServerSideProps() {
-    const res = await fetch("/api/fetchPosters", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    });
-    const allPosters = [];
-    if (res.status === 200){
-        allPosters = await res.json();
-    }
-    console.log('fsdfsa');
-    return {
-      props: { allPosters },
-    };
-  }
 
-const DashboardSection = async (allPosters) => {
-    console.log(allPosters);
+const DashboardSection = () => {
     const [user, { mutate }] = useCurrentUser();
-    const [posters, { mutatePosters }] = useState();
+
+    const [posters, setData] = useState([]);
     const [loading, isLoading] = useState(false);
     const nameRef = useRef();
     const bioRef = useRef();
     const profilePictureRef = useRef();
     const [msg, setMsg] = useState({ message: '', isError: false });
     const router = useRouter();
-    const res = await fetch("/api/fetchPosters", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    });
-    console.log(res);
    
+    useEffect(() => {
+        isLoading(true)
+        fetch('/api/fetchPosters')
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data)
+            isLoading(false)
+          })
+    }, [])
 
-    const getposters = async (e) => {
-        e.preventDefault();
-        updateLoad(true);
-        const res = await fetch("/api/fetchPosters", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-        });
-        if (res.status === 201) {
-            setMsgAck(true);
-            setTimeout(() => setMsgAck(false), 2500)
-        } else if (res.status === 200){
-            const allPosters = await res.json();
-            // writing our user object to the state
-            mutatePosters(allPosters);
-        }else {
-            setErrorMsg(await res.text());
-        }
-        updateLoad(false);
-        var msgForm = document.getElementById("msgForm");
-        msgForm.reset();
-    };
 
     const people = [
 
@@ -115,38 +84,31 @@ const DashboardSection = async (allPosters) => {
                             </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                            {(people)?people.map((person) => (
+                            {posters.map((person) => (
                                 <tr key={person.email}>
                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                     <div className="flex items-center">
-                                    <div className="h-10 w-10 flex-shrink-0">
-                                        <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
-                                    </div>
                                     <div className="ml-4">
-                                        <div className="font-medium text-gray-900">{person.name}</div>
-                                        <div className="text-gray-500">{person.email}</div>
+                                        <div className="font-medium text-gray-900">{person.fname} {person.lname}</div>
                                     </div>
                                     </div>
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <div className="text-gray-900">{person.title}</div>
-                                    <div className="text-gray-500">{person.department}</div>
+                                    <div className="text-gray-900">{person.email}</div>
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                                    Active
+                                    {person.phone}
                                     </span>
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.createby}</td>
                                 <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                    Edit<span className="sr-only">, {person.name}</span>
-                                    </a>
+                                    <div className="ml-4">
+                                        <div className="font-medium text-gray-900">{person.createdate}</div>
+                                    </div>
                                 </td>
                                 </tr>
-                            )):<th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                            Loading
-                            </th>}
+                            ))}
                             </tbody>
                         </table>
                         </div>
@@ -159,9 +121,9 @@ const DashboardSection = async (allPosters) => {
 };
 
 
-const DashboardPage = (allPosters) => {
-    console.log('allPosters');
-    if (!allPosters) {
+const DashboardPage = () => {
+    const [user] = useCurrentUser();
+    if (!user) {
         return (
             <>
                 <p>Loading</p>
