@@ -35,13 +35,12 @@ export default function Home() {
                             <div className='row h-100' style={{ flexDirection: 'column', justifyContent: 'space-between' }}>
                                 <div className='col-sm-12'>
                                     <h2 style={{ marginTop: '0' }}><span style={{ fontWeight: 'bolder', color: `${user ? '#5c9eff' : '#5c9eff'}`, textShadow: '2px 2px black' }}>Hello </span>{!user ? 'Stranger' : user.name}</h2>
-                                    <p>Welcome to <strong>our math project</strong></p>
+                                    <p>Welcome to <strong className="text-lg">our math project</strong></p>
                                 </div>
                                 <div className='col-sm-12'>
                                     {!user ? (<>
                                         <div className="card-text">
-                                            This is an Authentication build in <a href="https://nextjs.org/" target="_blank" style={{ textDecoration: 'underline', color: "" }}>Next.js</a> using <a href="http://www.passportjs.org/" target="_blank" style={{ textDecoration: 'underline', color: "" }}>Passport.js</a> and <a href="https://www.mongodb.com/" target="_blank" style={{ textDecoration: 'underline', color: "" }}>Mongodb </a>
-                                            . It is a fully functional & ready to use module build for your next web application.This is template 0.0 I will be pushing more new personalized templates soon.
+                                            this our dashboard
                                         </div>
                                         <div class="alert alert-primary my-2" role="alert">
                                             Till then go on try it around, I hope you like it

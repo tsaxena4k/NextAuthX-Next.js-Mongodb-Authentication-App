@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useCurrentUser } from '../lib/hooks';
 import { useRouter } from 'next/router';
-import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon, MapIcon, BuildingLibraryIcon} from '@heroicons/react/24/outline';
 
 const DashboardSection = () => {
     const [user, { mutate }] = useCurrentUser();
@@ -24,11 +24,11 @@ const DashboardSection = () => {
 
     const navigation = [
         { name: 'Dashboard', icon: HomeIcon, href: '#', current: true },
-        { name: 'Team', icon: UsersIcon, href: '#', count: 3, current: false },
-        { name: 'Projects', icon: FolderIcon, href: '#', count: 4, current: false },
-        { name: 'Calendar', icon: CalendarIcon, href: '#', current: false },
-        { name: 'Documents', icon: InboxIcon, href: '#', current: false },
-        { name: 'Reports', icon: ChartBarIcon, href: '#', count: 12, current: false },
+        { name: 'Locations', icon: MapIcon, href: 'locations', count: 3, current: false },
+        { name: 'Universities', icon: BuildingLibraryIcon, href: 'universities', count: 4, current: false },
+        { name: 'records requests', icon: CalendarIcon, href: 'records', current: false },
+        { name: 'Posters', icon: InboxIcon, href: 'posters', current: false },
+        { name: 'Rewards Rules', icon: ChartBarIcon, href: '#', count: 12, current: false },
       ]
       
     function classNames(...classes) {
@@ -98,7 +98,7 @@ const DashboardSection = () => {
                     </div>
                     </a>
                 </div>
-                </div>
+            </div>
         </>
     );
 };
