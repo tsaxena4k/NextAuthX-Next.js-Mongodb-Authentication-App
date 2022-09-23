@@ -98,7 +98,7 @@ const DashboardSection = () => {
                     </div>
                     </a>
                 </div>
-                </div>
+            </div>
         </>
     );
 };
