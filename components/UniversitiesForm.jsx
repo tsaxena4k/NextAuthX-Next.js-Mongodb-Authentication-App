@@ -7,7 +7,13 @@ import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon,
 
 const DashboardSection = () => {
     const [loading, isLoading] = useState(false);
+    const [selectedCountry, setselectedCountry] = useState('');
+    const [selectedStates, setselectedStates] = useState('');
+    const [selectedCity, setselectedCity] = useState('');
     const [errorMsg, setErrorMsg] = useState("");
+    const [countries, setData] = useState([]);
+    const [states, setStates] = useState([]);
+    const [cities, setCities] = useState([]);
     const emailRef = useRef();
     const fnameRef = useRef();
     const lnameRef = useRef();
@@ -16,7 +22,7 @@ const DashboardSection = () => {
 
     useEffect(() => {
         isLoading(true)
-        fetch('/api/fetchUniversities')
+        fetch('/api/fetchCountries')
           .then((res) => res.json())
           .then((data) => {
             setData(data)
@@ -27,7 +33,6 @@ const DashboardSection = () => {
     const [user, { mutate }] = useCurrentUser();   
     const navigation = [
         { name: 'Dashboard', icon: HomeIcon, href: 'dashboard', current: false },
-        { name: 'Locations', icon: MapIcon, href: 'locations', count: 3, current: false },
         { name: 'Universities', icon: BuildingLibraryIcon, href: 'universities', count: 4, current: true },
         { name: 'records requests', icon: CalendarIcon, href: 'records', current: false },
         { name: 'Posters', icon: InboxIcon, href: 'posters', current: false },
@@ -35,6 +40,31 @@ const DashboardSection = () => {
     ];
     const [msg, setMsg] = useState({ message: '', isError: false });
     const router = useRouter();
+
+    const callStates = async (selected) => {
+        setselectedCountry(selected);
+        isLoading(true);
+        setStates([]);
+        fetch('/api/fetchStates',{
+            body: selected
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setStates(data)
+            isLoading(false)
+        });
+
+        let carsMakerModel = [];
+        setStates('');
+        const res = await axios.get(`/api/cars/carsModel`, {
+          params: {
+            maker_id: selected.id_car_make,
+          },
+        });
+        states = res.data ? res.data.data : res.data;
+        setStates(states);
+    };
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -104,31 +134,17 @@ const DashboardSection = () => {
                             Country
                             </label>
                             <select
+                                required
                                 id="location"
                                 name="location"
                                 className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                defaultValue="Canada"
-                            >
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>Mexico</option>
-                            </select>
-                        </div>
-
-
-                        <div className="col-span-6 sm:col-span-4">
-                            <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                            City
-                            </label>
-                            <select
-                                id="location"
-                                name="location"
-                                className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                defaultValue="Canada"
-                            >
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>Mexico</option>
+                                defaultValue=""
+                                value={selectedCountry}
+                                onChange={callStates}
+                                >
+                                {countries.map((item) => (
+                                    <option key={item.id}>{item.name}</option>
+                                ))}
                             </select>
                         </div>
 
@@ -140,11 +156,31 @@ const DashboardSection = () => {
                                 id="location"
                                 name="location"
                                 className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                defaultValue="Canada"
+                                defaultValue=""
+                                value={selectedStates}
+                                onChange={(event) => callCities(event)}
                             >
-                                <option>United States</option>
-                                <option>Canada</option>
-                                <option>Mexico</option>
+                               {(states)?states.map((item) => (
+                                    <option key={item.id}>{item.name}</option>
+                                )):<option></option>}
+                            </select>
+                        </div>
+
+                        <div className="col-span-6 sm:col-span-4">
+                            <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                            City
+                            </label>
+                            <select
+                                id="location"
+                                name="location"
+                                className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                                defaultValue=""
+                                value={selectedCity}
+                                onChange={setselectedCity}
+                            >
+                                {cities.map((item) => (
+                                    <option key={item.id}>{item.name}</option>
+                                ))}
                             </select>
                         </div>
 

@@ -32,7 +32,7 @@ const DashboardPinnedSection = () => {
     const projects = [
         {
           id: 1,
-          title: 'GraphQL API',
+          title: 'Universites',
           initials: 'GA',
           team: 'Engineering',
           members: [
@@ -67,7 +67,7 @@ const DashboardPinnedSection = () => {
           bgColorClass: 'bg-pink-600',
         },{
           id: 1,
-          title: 'GraphQL API',
+          title: 'Records',
           initials: 'GA',
           team: 'Engineering',
           members: [
@@ -102,7 +102,7 @@ const DashboardPinnedSection = () => {
           bgColorClass: 'bg-green-600',
         },{
           id: 1,
-          title: 'GraphQL API',
+          title: 'Posters',
           initials: 'GA',
           team: 'Engineering',
           members: [
@@ -168,7 +168,7 @@ const DashboardPinnedSection = () => {
                         <a href="#" className="font-medium text-gray-900 hover:text-gray-600">
                           {project.title}
                         </a>
-                        <p className="text-gray-500">{project.totalMembers} Members</p>
+                        <p className="text-gray-500">{project.totalMembers} Items</p>
                       </div>
                       <Menu as="div" className="flex-shrink-0 pr-2">
                         <Menu.Button className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
