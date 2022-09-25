@@ -14,10 +14,10 @@ const DashboardSection = () => {
     const [countries, setData] = useState([]);
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
-    const emailRef = useRef();
-    const fnameRef = useRef();
-    const lnameRef = useRef();
-    const phoneRef = useRef();
+    const nameRef = useRef();
+    const countryRef = useRef();
+    const stateRef = useRef();
+    const cityRef = useRef();
 
 
     useEffect(() => {
@@ -44,11 +44,22 @@ const DashboardSection = () => {
     const callStates = async (e) => {
         setselectedCountry(e.target.value);
         isLoading(true);
-        setStates([]);
+        setCities([]);
         fetch(`/api/fetchStates?id=${e.target.value}`)
-          .then((res) => console.log(res))
+          .then((res) => res.json())
           .then((data) => {
             setStates(data)
+            isLoading(false)
+        });
+    };
+
+    const callCities = async (e) => {
+        setselectedStates(e.target.value);
+        isLoading(true);
+        fetch(`/api/fetchCities?country_id=${selectedCountry}&state_id=${e.target.value}`)
+          .then((res) => res.json())
+          .then((data) => {
+            setCities(data)
             isLoading(false)
         });
     };
@@ -60,14 +71,14 @@ const DashboardSection = () => {
         const formData = new FormData();
 
         const body = {
-            email: fnameRef.current.value,
-            fname: fnameRef.current.value,
-            lname: lnameRef.current.value,
-            phone: phoneRef.current.value,
+            name: nameRef.current.value,
+            country: countryRef.current.value,
+            state: stateRef.current.value,
+            city: cityRef.current.value,
             createby: user.id,
             createdate: new Date().toDateString()
         };
-        const res = await fetch("/api/posters", {
+        const res = await fetch("/api/universities", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
@@ -80,7 +91,7 @@ const DashboardSection = () => {
                     ...userData.user,
                 },
             });
-            setMsg({ message: 'Profile updated' });
+            setMsg({ message: 'updated' });
         } else {
             setMsg({ message: await res.text(), isError: true });
         }
@@ -112,7 +123,7 @@ const DashboardSection = () => {
                             name="name"
                             id="name"
                             autoComplete="given-name"
-                            ref={fnameRef}
+                            ref={nameRef}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                         </div>
@@ -128,6 +139,7 @@ const DashboardSection = () => {
                                 className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 defaultValue=""
                                 value={selectedCountry}
+                                ref={countryRef}
                                 onChange={callStates}
                                 >
                                 {countries.map((item) => (
@@ -145,11 +157,12 @@ const DashboardSection = () => {
                                 name="location"
                                 className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 defaultValue=""
+                                ref={stateRef}
                                 value={selectedStates}
                                 onChange={(event) => callCities(event)}
                             >
                                {(states)?states.map((item) => (
-                                    <option key={item.id}>{item.name}</option>
+                                    <option key={item.id} value={item.id}>{item.name}</option>
                                 )):<option></option>}
                             </select>
                         </div>
@@ -164,10 +177,11 @@ const DashboardSection = () => {
                                 className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                 defaultValue=""
                                 value={selectedCity}
+                                ref={cityRef}
                                 onChange={setselectedCity}
                             >
                                 {cities.map((item) => (
-                                    <option key={item.id}>{item.name}</option>
+                                    <option key={item.id} value={item.id}>{item.name}</option>
                                 ))}
                             </select>
                         </div>

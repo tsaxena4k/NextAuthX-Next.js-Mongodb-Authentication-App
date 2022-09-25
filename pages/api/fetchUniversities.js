@@ -1,6 +1,9 @@
 import nextConnect from 'next-connect';
 import middleware from '../../middlewares/middleware';
 import { extractUser } from '../../lib/api-helpers';
+import { clientPromise } from '../../lib/connection-helpers';
+
+const db = (await clientPromise).db(process.env.MONGODB_DB);
 
 const handler = nextConnect();
 
