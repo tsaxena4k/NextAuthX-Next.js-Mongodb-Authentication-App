@@ -41,28 +41,16 @@ const DashboardSection = () => {
     const [msg, setMsg] = useState({ message: '', isError: false });
     const router = useRouter();
 
-    const callStates = async (selected) => {
-        setselectedCountry(selected);
+    const callStates = async (e) => {
+        setselectedCountry(e.target.value);
         isLoading(true);
         setStates([]);
-        fetch('/api/fetchStates',{
-            body: selected
-        })
-          .then((res) => res.json())
+        fetch(`/api/fetchStates?id=${e.target.value}`)
+          .then((res) => console.log(res))
           .then((data) => {
             setStates(data)
             isLoading(false)
         });
-
-        let carsMakerModel = [];
-        setStates('');
-        const res = await axios.get(`/api/cars/carsModel`, {
-          params: {
-            maker_id: selected.id_car_make,
-          },
-        });
-        states = res.data ? res.data.data : res.data;
-        setStates(states);
     };
 
 
@@ -143,7 +131,7 @@ const DashboardSection = () => {
                                 onChange={callStates}
                                 >
                                 {countries.map((item) => (
-                                    <option key={item.id}>{item.name}</option>
+                                    <option key={item.id} value={item.id}>{item.name}</option>
                                 ))}
                             </select>
                         </div>
