@@ -58,10 +58,10 @@ const DashboardSection = () => {
                                 Country
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                City
+                                State
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                State
+                                City
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                 Added by
@@ -72,27 +72,32 @@ const DashboardSection = () => {
                             </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                            {universities.map((person) => (
-                                <tr key={person.email}>
+                            {universities.map((item) => (
+                                <tr key={item.id}>
                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                     <div className="flex items-center">
                                     <div className="ml-4">
-                                        <div className="font-medium text-gray-900">{person.fname} {person.lname}</div>
+                                        <div className="font-medium text-gray-900"> {item.name} </div>
                                     </div>
                                     </div>
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    <div className="text-gray-900">{person.email}</div>
+                                    <div className="text-gray-900">{item.countriesdetails[0].name}</div>
                                 </td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
-                                    {person.phone}
+                                    {item.statesdetails[0].name}
                                     </span>
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.createby}</td>
-                                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    <span className="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">
+                                    {item.citiesdetails[0].name}
+                                    </span>
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.createby}</td>
+                                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium sm:pr-6">
                                     <div className="ml-4">
-                                        <div className="font-medium text-gray-900">{person.createdate}</div>
+                                        <div className="font-medium text-gray-900">{item.createdate}</div>
                                     </div>
                                 </td>
                                 </tr>

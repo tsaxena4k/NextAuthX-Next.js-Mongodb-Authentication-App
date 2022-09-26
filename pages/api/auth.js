@@ -4,7 +4,7 @@ import passport from '../../lib/passport';
 import { extractUser } from '../../lib/api-helpers';
 import { clientPromise } from '../../lib/connection-helpers';
 
-const db = (await clientPromise).db(process.env.MONGODB_DB);
+//const db = (await clientPromise).db(process.env.MONGODB_DB);
 
 const handler = nextConnect();
 
