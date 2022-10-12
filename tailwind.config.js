@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
 
     important: true,
@@ -77,6 +79,10 @@ module.exports = {
             900: "#2a4365",
   
           },
+          black: "#1a202c",
+          
+          teal: colors.teal,
+          cyan: colors.cyan,
   
         },
   
@@ -88,6 +94,10 @@ module.exports = {
   
     // eslint-disable-next-line global-require
   
-    plugins: [require("@tailwindcss/forms")],
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+      require('@tailwindcss/aspect-ratio'),
+    ],
   
   };
