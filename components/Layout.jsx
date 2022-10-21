@@ -36,7 +36,7 @@ export default function Layout({ children }) {
     };
 
     const navigation = [
-        { name: 'Search', href: '#' },
+        { name: 'Search', href: '/search' },
         { name: 'About us', href: '/aboutus' },
         { name: 'Poster', href: '#' },
         { name: 'Contact us', href: '/contactus' },

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background: #1a202c;
+    background: #fff;
 }
 .nav-wrapper {
     background-color: #009688;
