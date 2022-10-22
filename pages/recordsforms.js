@@ -1,4 +1,4 @@
-import Locations from '../components/Locations';
+import Records from '../components/Records';
 import Forms from '../components/Forms';
 
 export default function login() {
@@ -7,7 +7,7 @@ export default function login() {
             <div class="row g-0">
                 <div class="col-md-3">
                     <div class="card-body">
-                        <Locations />
+                        <Records />
                     </div>
                 </div>
                 <div class="col-md-9">

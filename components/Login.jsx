@@ -51,9 +51,34 @@ export default function Login() {
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                     <form className="space-y-6" onSubmit={onSubmit}>
+                    <div className="mt-4 space-y-4">
+                            <div className="flex items-center">
+                            <input
+                                id="push-everything"
+                                name="push-notifications"
+                                type="radio"
+                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            />
+                            <label
+                             htmlFor="push-everything" className="ml-3 block text-sm font-medium text-gray-700">
+                                Male
+                            </label>
+                            </div>
+                            <div className="flex items-center">
+                            <input
+                                id="push-email"
+                                name="push-notifications"
+                                type="radio"
+                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            />
+                            <label htmlFor="push-email" className="ml-3 block text-sm font-medium text-gray-700">
+                                Female
+                            </label>
+                            </div>
+                        </div>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                        Email address
+                        Thesis name
                         </label>
                         <div className="mt-1">
                         <input

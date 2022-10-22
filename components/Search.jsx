@@ -45,6 +45,40 @@ const DashboardSection = () => {
         }
     }, [user]);**/
 
+      const handleSubmit = async (event) => {
+        event.preventDefault();
+        isLoading(true);
+        const formData = new FormData();
+
+        const body = {
+            email: emailRef.current.value,
+            fname: fnameRef.current.value,
+            lname: lnameRef.current.value,
+            university: universityRef.current.value,
+            createby: user.id,
+            createdate: new Date().toDateString()
+        };
+        const res = await fetch("/api/records", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+        });
+        if (res.status === 200) {
+            const userData = await res.json();
+            mutate({
+                user: {
+                    ...user,
+                    ...userData.user,
+                },
+            });
+            setMsg({ message: 'Profile updated' });
+        } else {
+            setMsg({ message: await res.text(), isError: true });
+        }
+        isLoading(false);
+        setTimeout(() => setMsg(''), 2500);
+      };
+
     const user = {
 
 
@@ -52,14 +86,7 @@ const DashboardSection = () => {
         imageUrl:
           'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
       }
-      const navigation = [
-        { name: 'Dashboard', href: '#', icon: HomeIcon, current: false },
-        { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-        { name: 'Teams', href: '#', icon: UserGroupIcon, current: false },
-        { name: 'Directory', href: '#', icon: MagnifyingGlassCircleIcon, current: true },
-        { name: 'Announcements', href: '#', icon: MegaphoneIcon, current: false },
-        { name: 'Office Map', href: '#', icon: MapIcon, current: false },
-      ]
+     
       const tabs = [
         { name: 'Profile', href: '#', current: true },
         { name: 'Calendar', href: '#', current: false },
@@ -372,6 +399,7 @@ const DashboardSection = () => {
                     </div>
                   </div>
                   <button
+                    onSubmit={handleSubmit}
                     type="submit"
                     className="inline-flex justify-center rounded-md border border-gray-300 bg-white px-3.5 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
                   >

@@ -6,40 +6,66 @@ import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon,
 
 const DashboardSection = () => {
     const [user, { mutate }] = useCurrentUser();
+    const [universities, setData] = useState([]);
     const [loading, isLoading] = useState(false);
-    const nameRef = useRef();
-    const bioRef = useRef();
-    const profilePictureRef = useRef();
+    const [selectedUniversity, setselectedUniversity] = useState('');
+    const emailRef = useRef();
+    const fnameRef = useRef();
+    const lnameRef = useRef();
+    const universityRef = useRef();
+    const thesisRef = useRef();
     const [msg, setMsg] = useState({ message: '', isError: false });
-    const router = useRouter();
+    
+    useEffect(() => {
+        isLoading(true)
+        fetch('/api/fetchUniversities')
+          .then((res) => res.json())
+          .then((data) => {
+            setData(data)
+            isLoading(false)
+          })
+    }, [])
 
-    /**useEffect(() => {
-        if (!user) {
-            router.push('/');
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        isLoading(true);
+        const formData = new FormData();
+
+        const body = {
+            email: emailRef.current.value,
+            fname: fnameRef.current.value,
+            lname: lnameRef.current.value,
+            university: universityRef.current.value,
+            createby: user.id,
+            createdate: new Date().toDateString()
+        };
+        const res = await fetch("/api/records", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+        });
+        if (res.status === 200) {
+            const userData = await res.json();
+            mutate({
+                user: {
+                    ...user,
+                    ...userData.user,
+                },
+            });
+            setMsg({ message: 'Profile updated' });
         } else {
-            nameRef.current.value = user.name;
-            bioRef.current.value = user.bio;
+            setMsg({ message: await res.text(), isError: true });
         }
-    }, [user]);**/
-
-    const navigation = [
-        { name: 'Dashboard', icon: HomeIcon, href: 'dashboard', current: true },
-        { name: 'Universities', icon: BuildingLibraryIcon, href: 'universities', count: 4, current: false },
-        { name: 'records requests', icon: CalendarIcon, href: 'records', current: false },
-        { name: 'Posters', icon: InboxIcon, href: 'posters', current: false },
-        { name: 'Rewards Rules', icon: ChartBarIcon, href: '#', count: 12, current: false },
-      ]
+        isLoading(false);
+        setTimeout(() => setMsg(''), 2500);
+    };
       
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(' ')
-    }
-
     return (
         <>
             <Head>
                 <title>Dashboard</title>
             </Head>
-            <form className="space-y-6" action="#" method="POST">
+            <form onSubmit={handleSubmit} className="space-y-6" action="#" method="POST">
                 <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
                     <div className="md:grid md:grid-cols-3 md:gap-6">
                     <div className="md:col-span-1">
@@ -57,6 +83,7 @@ const DashboardSection = () => {
                             name="first-name"
                             id="first-name"
                             autoComplete="given-name"
+                            ref={fnameRef}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                         </div>
@@ -70,6 +97,7 @@ const DashboardSection = () => {
                             name="last-name"
                             id="last-name"
                             autoComplete="family-name"
+                            ref={lnameRef}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                         </div>
@@ -83,6 +111,7 @@ const DashboardSection = () => {
                             name="email-address"
                             id="email-address"
                             autoComplete="email"
+                            ref={emailRef}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                         </div>
@@ -95,51 +124,31 @@ const DashboardSection = () => {
                             id="country"
                             name="country"
                             autoComplete="country-name"
+                            ref={universityRef}
+                            value={selectedUniversity}
                             className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                             >
-                            <option>United States</option>
-                            <option>Canada</option>
-                            <option>Mexico</option>
+                            {universities.map((item) => (
+                                    <option key={item.id} value={item.id}>{item.name}</option>
+                            ))}
                             </select>
                         </div>
 
                         <div className="col-span-6">
                             <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                            Street address
+                            Thesis Name
                             </label>
                             <input
                             type="text"
                             name="street-address"
                             id="street-address"
                             autoComplete="street-address"
+                            ref={thesisRef}
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                         </div>
 
-                        <div className="mt-4 space-y-4">
-                            <div className="flex items-center">
-                            <input
-                                id="push-everything"
-                                name="push-notifications"
-                                type="radio"
-                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label htmlFor="push-everything" className="ml-3 block text-sm font-medium text-gray-700">
-                                Male
-                            </label>
-                            </div>
-                            <div className="flex items-center">
-                            <input
-                                id="push-email"
-                                name="push-notifications"
-                                type="radio"
-                                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <label htmlFor="push-email" className="ml-3 block text-sm font-medium text-gray-700">
-                                Female
-                            </label>
-                            </div>
-                        </div>
+                        
                         </div>
                     </div>
                     </div>
@@ -152,11 +161,14 @@ const DashboardSection = () => {
                     >
                     Cancel
                     </button>
+                    
                     <button
                     type="submit"
                     className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
-                    Save
+                    {loading ? <div class="spinner-border" role="status" style={{ width: '1.5rem', height: '1.5rem' }}>
+                        <span class="visually-hidden">Loading...</span>
+                    </div> : <>Save</>}
                     </button>
                 </div>
                 </form>
