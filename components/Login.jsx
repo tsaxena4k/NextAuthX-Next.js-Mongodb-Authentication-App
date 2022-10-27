@@ -17,15 +17,40 @@ export default function Login() {
     const [loading, isLoading] = useState(false);
     
     useEffect(() => {
-       /**gapi.load("client:auth2", () => {
-            gapi.client.init({
-                clientId: "222480430426-hko2000qdbkc2isvpjdki7jhhqsjou7g.apps.googleusercontent.com",
-                scope: ''
-            });
-        });**/
         // redirect to home if user is authenticated
+        const fetchData = async () => {
+            isLoading(true);
+            const body = {
+                email: session.user.email,
+                name: session.user.name,
+                profilePicture: session.user.image,
+                role: 'poster'
+            };
+            const res = await fetch("/api/users_google", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
+            if (res.status === 201) {
+                const userObj =  res.json();
+                // writing our user object to the state
+                mutate(userObj);
+            } else {
+                isLoading(false);
+                setErrorMsg( res.text());
+            }
+        }
+        
         if(session){
-            router.replace("/user/632363631fcb390f1ca22094");
+            fetchData()
+            // make sure to catch any error
+            .catch(console.error);
+            /**const userObj = {
+                email: e.currentTarget.email.value,
+                password: e.currentTarget.password.value
+            };
+            mutate(userObj);
+            router.replace("/user/632363631fcb390f1ca22094");**/
         }
         //if (user) router.replace("/");
     }, [user]);
