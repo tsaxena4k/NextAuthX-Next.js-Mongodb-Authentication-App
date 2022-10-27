@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useCurrentUser } from '../lib/hooks';
-import { useRouter } from 'next/router';
-import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon, MapIcon, BuildingLibraryIcon} from '@heroicons/react/24/outline';
+import { PlusIcon as PlusIconMini } from '@heroicons/react/20/solid'
 
 const DashboardSection = () => {
     const [user, { mutate }] = useCurrentUser();
@@ -11,11 +10,13 @@ const DashboardSection = () => {
     const [loading, isLoading] = useState(false);
     const [selectedUniversity, setselectedUniversity] = useState('');
     const [selectedAdvisor, setselectedAdvisor] = useState('');
+    const [showModal, setShowModal] = useState(false);
     const yearRef = useRef();
     const fnameRef = useRef();
     const lnameRef = useRef();
     const pagesRef = useRef();
     const middleRef = useRef();
+    const nameRef = useRef();
     const alFnameRef = useRef();
     const advisorRef = useRef();
     const universityRef = useRef();
@@ -50,6 +51,7 @@ const DashboardSection = () => {
             alFname: alFnameRef.current.value,
             advisor: advisorRef.current.value,
             university: universityRef.current.value,
+            dissertation_Title: thesisRef.current.value,
             pages: pagesRef.current.value,
             status: 2,
             createby: user._id,
@@ -76,6 +78,36 @@ const DashboardSection = () => {
         setTimeout(() => setMsg(''), 2500);
     };
       
+    const addAdvisor = async (event) => {
+        event.preventDefault();
+        isLoading(true);
+        const body = {
+            name: nameRef.current.value,
+            createby: user._id,
+            createdate: new Date().toDateString()
+        };
+        const res = await fetch("/api/advisors", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
+        });
+        if (res.status === 200) {
+            await fetch('/api/fetchAdvisors')
+                .then((res) => res.json())
+                .then((data) => {
+                    setAdvisors(data)
+                    isLoading(false)
+            })
+            setShowModal(false);
+            setMsg({ message: 'Addes Successfully' });
+        } else {
+            setMsg({ message: await res.text(), isError: true });
+        }
+        isLoading(false);
+        setTimeout(() => setMsg(''), 2500);
+    };
+
+
     return (
         <>
             <Head>
@@ -179,7 +211,7 @@ const DashboardSection = () => {
                             focus:ring-indigo-500 sm:text-sm"
                             >
                             {universities.map((item) => (
-                                    <option key={item.id} value={item.id}>{item.name}</option>
+                                    <option key={item.id} value={item._id}>{item.name}</option>
                             ))}
                             </select>
                         </div>
@@ -215,11 +247,23 @@ const DashboardSection = () => {
                                 focus:ring-indigo-500 sm:text-sm"
                                 >
                                 {advisors.map((item) => (
-                                    <option key={item.id} value={item.id}>{item.name}</option>
+                                    <option key={item.id} value={item._id}>{item.name}</option>
                                 ))}
                             </select>
                         </div>
-
+                        <div className="col-span-2 sm:col-span-1 justify-center items-center">
+                            <label htmlFor="advisor" className="block text-sm font-medium text-gray-700">
+                                Add Advisor
+                            </label>
+                            <button
+                                type="button"
+                                onClick={() => setShowModal(true)}
+                                className="mt-2 inline-flex items-center rounded-full border
+                                 border-transparent bg-indigo-600 p-2 text-white shadow-sm 
+                                 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                                <PlusIconMini className="h-5 w-5" aria-hidden="true" />
+                            </button>
+                        </div>
                         <div className="col-span-6">
                             <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
                             Dissertation Title
@@ -240,7 +284,68 @@ const DashboardSection = () => {
                     </div>
                     </div>
                 </div>
-
+                {showModal ? (
+                        <>
+                        <form onSubmit={addAdvisor} className="space-y-6" action="#" method="POST">
+                        <div
+                            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 
+                            outline-none focus:outline-none"
+                        >
+                            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                            {/*content*/}
+                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none 
+                            focus:outline-none">
+                                {/*header*/}
+                                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 
+                                rounded-t">
+                                <h3 className="text-3xl font-semibold">
+                                    Add New Advisor
+                                </h3>
+                                <button
+                                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl 
+                                    leading-none font-semibold outline-none focus:outline-none"
+                                    onClick={() => setShowModal(false)}
+                                >
+                                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                                    ×
+                                    </span>
+                                </button>
+                                </div>
+                                {/*body*/}
+                                <div className="relative p-6 flex-auto">
+                                    <input
+                                        type="text"
+                                        name="first-name"
+                                        id="first-name"
+                                        autoComplete="given-name"
+                                        ref={nameRef}
+                                        className="mt-1 block w-full rounded-md border-gray-300 
+                                        shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                    />
+                                </div>
+                                {/*footer*/}
+                                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                                <button
+                                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={() => setShowModal(false)}
+                                >
+                                    Close
+                                </button>
+                                <button
+                                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                    type="button"
+                                    onClick={addAdvisor}>
+                                    Save Changes
+                                </button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </form>
+                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                        </>
+                    ) : null}
                 <div className="flex justify-end">
                     <button
                     type="button"

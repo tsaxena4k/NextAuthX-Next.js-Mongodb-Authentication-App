@@ -8,15 +8,15 @@ handler.use(middleware); // see how we're reusing our middleware
 
 // POST /api/records
 handler.post(async (req, res) => {
-  const { year, fname, lname, mname, university, pages, status, alFname, advisor, createby, createdate } = req.body;
-  if (!year || !fname || !lname || !university) {
+  const { year, fname, lname, mname, university, pages, status, alFname, dissertation_Title, advisor, createby, createdate } = req.body;
+  if (!year || !fname || !lname || !university || !dissertation_Title || !advisor) {
     res.status(400).send('Missing field(s)');
     return;
   }
  
   const user = await req.db
     .collection('records')
-    .insertOne({ year, fname, lname, mname, university, pages, alFname, advisor, status, createby, createdate})
+    .insertOne({ year, fname, lname, mname, university, pages, alFname, advisor, dissertation_Title, status, createby, createdate})
     .then(({ ops }) => ops[0]);
   req.logIn(user, (err) => {
     if (err) throw err;
