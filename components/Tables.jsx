@@ -52,7 +52,7 @@ const DashboardSection = () => {
                     </p>
                     </div>
                     <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                        <Link href='/recordsforms'><a className='btn btn-primary'>Add New Records</a></Link>
+                        <Link href='/recordsForms'><a className='btn btn-primary'>Add New Records</a></Link>
                     </div>
                 </div>
                 <div className="mt-8 flex flex-col">

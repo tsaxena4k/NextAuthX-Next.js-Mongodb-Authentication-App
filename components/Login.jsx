@@ -35,6 +35,10 @@ export default function Login() {
                 const userObj =  res.json();
                 // writing our user object to the state
                 mutate(userObj);
+            }else if (res.status === 403) {
+                const userObj =  res.json();
+                // writing our user object to the state
+                mutate(userObj);
             } else {
                 isLoading(false);
                 setErrorMsg( res.text());

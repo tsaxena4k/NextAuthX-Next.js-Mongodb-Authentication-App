@@ -20,9 +20,23 @@ handler.post(async (req, res) => {
   
   // check if email existed
   if ((await req.db.collection('users').countDocuments({ email })) > 0) {
-    res.status(403).json({
+    console.log(email);
+    /**res.status(201).json({
       user: extractUser(req),
+    });**/
+
+    const user = await req.db.collection('users').findOne({
+      email: email,
     });
+
+    req.logIn(user, (err) => {
+      if (err) throw err;
+      // when we finally log in, return the (filtered) user object
+      res.status(201).json({
+        user: extractUser(req),
+      });
+    });
+
   }
   const user = await req.db
     .collection('users')

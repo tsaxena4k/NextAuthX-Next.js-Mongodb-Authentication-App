@@ -7,15 +7,21 @@ import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon,
 const DashboardSection = () => {
     const [user, { mutate }] = useCurrentUser();
     const [universities, setData] = useState([]);
+    const [advisors, setAdvisors] = useState([]);
     const [loading, isLoading] = useState(false);
     const [selectedUniversity, setselectedUniversity] = useState('');
-    const emailRef = useRef();
+    const [selectedAdvisor, setselectedAdvisor] = useState('');
+    const yearRef = useRef();
     const fnameRef = useRef();
     const lnameRef = useRef();
+    const pagesRef = useRef();
+    const middleRef = useRef();
+    const alFnameRef = useRef();
+    const advisorRef = useRef();
     const universityRef = useRef();
     const thesisRef = useRef();
     const [msg, setMsg] = useState({ message: '', isError: false });
-    
+
     useEffect(() => {
         isLoading(true)
         fetch('/api/fetchUniversities')
@@ -24,19 +30,29 @@ const DashboardSection = () => {
             setData(data)
             isLoading(false)
           })
+        fetch('/api/fetchAdvisors')
+          .then((res) => res.json())
+          .then((data) => {
+            setAdvisors(data)
+            isLoading(false)
+          })
     }, [])
 
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         isLoading(true);
-        const formData = new FormData();
-
         const body = {
-            email: emailRef.current.value,
+            year: yearRef.current.value,
             fname: fnameRef.current.value,
             lname: lnameRef.current.value,
+            mname: middleRef.current.value,
+            alFname: alFnameRef.current.value,
+            advisor: advisorRef.current.value,
             university: universityRef.current.value,
-            createby: user.id,
+            pages: pagesRef.current.value,
+            status: 2,
+            createby: user._id,
             createdate: new Date().toDateString()
         };
         const res = await fetch("/api/records", {
@@ -52,7 +68,7 @@ const DashboardSection = () => {
                     ...userData.user,
                 },
             });
-            setMsg({ message: 'Profile updated' });
+            setMsg({ message: 'Addes Successfully' });
         } else {
             setMsg({ message: await res.text(), isError: true });
         }
@@ -74,49 +90,80 @@ const DashboardSection = () => {
                     </div>
                     <div className="mt-5 md:col-span-2 md:mt-0">
                         <div className="grid grid-cols-6 gap-6">
-                        <div className="col-span-6 sm:col-span-3">
-                            <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
-                            First name
-                            </label>
-                            <input
-                            type="text"
-                            name="first-name"
-                            id="first-name"
-                            autoComplete="given-name"
-                            ref={fnameRef}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
-                        </div>
+                            <div className="col-span-4 sm:col-span-2">
+                                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                                First name
+                                </label>
+                                <input
+                                type="text"
+                                name="first-name"
+                                id="first-name"
+                                autoComplete="given-name"
+                                ref={fnameRef}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                />
+                            </div>
 
-                        <div className="col-span-6 sm:col-span-3">
-                            <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                            Last name
-                            </label>
-                            <input
-                            type="text"
-                            name="last-name"
-                            id="last-name"
-                            autoComplete="family-name"
-                            ref={lnameRef}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            />
-                        </div>
-
-                        <div className="col-span-6 sm:col-span-4">
+                            <div className="col-span-4 sm:col-span-2">
+                                <label htmlFor="middle-name" className="block text-sm font-medium text-gray-700">
+                                Middle name
+                                </label>
+                                <input
+                                type="text"
+                                name="middle-name"
+                                id="middle-name"
+                                autoComplete="middle-name"
+                                ref={middleRef}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                                focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                />
+                            </div>
+                            <div className="col-span-4 sm:col-span-2">
+                                <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                                Last name
+                                </label>
+                                <input
+                                type="text"
+                                name="last-name"
+                                id="last-name"
+                                autoComplete="family-name"
+                                ref={lnameRef}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500
+                                focus:ring-indigo-500 sm:text-sm"
+                                />
+                            </div>
+                            <div className="col-span-6 sm:col-span-2">
+                                <label htmlFor="Alternate_Family_Name" className="block text-sm font-medium text-gray-700">
+                                Alternate Family Name
+                                </label>
+                                <input
+                                    type="text"
+                                    name="Alternate_Family_Name"
+                                    id="Alternate_Family_Name"
+                                    min="0"
+                                    autoComplete="Alternate_Family_Name"
+                                    ref={alFnameRef}
+                                    className="mt-1 block w-full rounded-md border-gray-300 
+                                    shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                />
+                            </div>
+                        <div className="col-span-2 sm:col-span-2">
                             <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                            Email address
+                            Year
                             </label>
                             <input
-                            type="text"
-                            name="email-address"
-                            id="email-address"
-                            autoComplete="email"
-                            ref={emailRef}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                type="number"
+                                min="0"
+                                name="year-address"
+                                id="year-address"
+                                autoComplete="year"
+                                ref={yearRef}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 
+                                focus:ring-indigo-500 sm:text-sm"
                             />
                         </div>
 
-                        <div className="col-span-6 sm:col-span-3">
+                        <div className="col-span-6 sm:col-span-2">
                             <label htmlFor="country" className="block text-sm font-medium text-gray-700">
                             University
                             </label>
@@ -126,25 +173,65 @@ const DashboardSection = () => {
                             autoComplete="country-name"
                             ref={universityRef}
                             value={selectedUniversity}
-                            className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            onChange={setselectedUniversity}
+                            className="mt-1 block w-full rounded-md border border-gray-300 
+                            bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none 
+                            focus:ring-indigo-500 sm:text-sm"
                             >
                             {universities.map((item) => (
                                     <option key={item.id} value={item.id}>{item.name}</option>
                             ))}
                             </select>
                         </div>
+                        <div className="col-span-6 sm:col-span-2">
+                            <label htmlFor="pages" className="block text-sm font-medium text-gray-700">
+                            Pages
+                            </label>
+                            <input
+                                type="number"
+                                name="pages"
+                                id="pages"
+                                min="0"
+                                autoComplete="pages"
+                                ref={pagesRef}
+                                className="mt-1 block w-full rounded-md border-gray-300 
+                                shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            />
+                        </div>
+
+                        <div className="col-span-6 sm:col-span-3">
+                            <label htmlFor="advisor" className="block text-sm font-medium text-gray-700">
+                            Advisor
+                            </label>
+                            <select
+                                id="advisor"
+                                name="advisor"
+                                autoComplete="advisor-name"
+                                ref={advisorRef}
+                                value={selectedAdvisor}
+                                onChange={setselectedAdvisor}
+                                className="mt-1 block w-full rounded-md border border-gray-300 
+                                bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none 
+                                focus:ring-indigo-500 sm:text-sm"
+                                >
+                                {advisors.map((item) => (
+                                    <option key={item.id} value={item.id}>{item.name}</option>
+                                ))}
+                            </select>
+                        </div>
 
                         <div className="col-span-6">
                             <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                            Thesis Name
+                            Dissertation Title
                             </label>
-                            <input
-                            type="text"
-                            name="street-address"
-                            id="street-address"
-                            autoComplete="street-address"
-                            ref={thesisRef}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            <textarea
+                                type="text"
+                                name="street-address"
+                                id="street-address"
+                                autoComplete="street-address"
+                                ref={thesisRef}
+                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+                                focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                             />
                         </div>
 
