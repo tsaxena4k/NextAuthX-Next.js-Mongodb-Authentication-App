@@ -2,40 +2,20 @@ import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { GoogleLogin } from 'react-google-login';
 import { useUser } from "../lib/hooks";
 import Link from 'next/link';
+import {useSession, signIn, signOut} from "next-auth/react";
 //import { gapi } from 'gapi-script';
 
 
 export default function Login() {
     const router = useRouter();
+    const {data:session} = useSession();
+    console.log(session);
     const [errorMsg, setErrorMsg] = useState("");
     const [user, { mutate }] = useUser();
     const [loading, isLoading] = useState(false);
     
-    const responseGoogle = (err) => {
-        console.log(err);
-    }
-
-    const handleLogin = async googleData => {
-        const res = await fetch("/api/v1/auth/google", {
-        method: "POST",
-        body: JSON.stringify({
-        token: googleData.tokenId
-      }),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })  
-    if (res.status === 200) {
-        // store returned user somehow
-        const userObj = await res.json();
-        console.log('fsdafdsaf');
-        mutate(userObj);
-    }
-    
-  }
     useEffect(() => {
        /**gapi.load("client:auth2", () => {
             gapi.client.init({
@@ -44,7 +24,10 @@ export default function Login() {
             });
         });**/
         // redirect to home if user is authenticated
-        if (user) router.replace("/");
+        if(session){
+            router.replace("/user/632363631fcb390f1ca22094");
+        }
+        //if (user) router.replace("/");
     }, [user]);
 
     async function onSubmit(e) {
@@ -185,24 +168,13 @@ export default function Login() {
 
                     <div className="mt-6 grid grid-cols-3 gap-3">
                         <div>
-                        <GoogleLogin
-                            className="inline-flex w-full justify-center rounded-md border border-gray-300
-                            bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-                            clientId="222480430426-hko2000qdbkc2isvpjdki7jhhqsjou7g.apps.googleusercontent.com"
-                            buttonText="Login"
-                            render={renderProps => (
-                                    <button onClick={renderProps.onClick} disabled={renderProps.disabled}
-                                    className="inline-flex w-full justify-center rounded-md border 
-                                    border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-                                >
-                                    <span className="sr-only">Sign in with Twitter</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16"> <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/> </svg> 
-                                </button>
-                              )}
-                            onSuccess={handleLogin}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        />
+                        <button onClick={signIn} 
+                            className="inline-flex w-full justify-center rounded-md border 
+                            border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                        >
+                            <span className="sr-only">Sign in with Twitter</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16"> <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/> </svg> 
+                        </button>
                         </div>
                     </div>
                     </div>

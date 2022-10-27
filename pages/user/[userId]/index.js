@@ -58,7 +58,7 @@ export default function Example() {
 
   useEffect(() => {
         if (!user) {
-            router.push('/');
+            //router.push('/');
         } else {
             nameRef.current.value = user.name;
             bioRef.current.value = user.bio;
