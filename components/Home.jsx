@@ -263,7 +263,7 @@ export default function Example() {
                     </a>
                     <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
                       <span className="block">A better way to</span>
-                      <span className="block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3 text-transparent sm:pb-5">
+                      <span className="block bg-gradient-to-r from-teal-200 to-cyan-400 bg-clip-text pb-3  sm:pb-5">
                         ship web apps
                       </span>
                     </h1>
@@ -281,7 +281,7 @@ export default function Example() {
                             <input
                               id="email"
                               type="email"
-                              placeholder="Enter your email"
+                              placeholder="Search thesis..."
                               className="block w-full rounded-md border-0 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900"
                             />
                           </div>
@@ -290,7 +290,7 @@ export default function Example() {
                               type="submit"
                               className="block w-full rounded-md bg-gradient-to-r from-teal-500 to-cyan-600 py-3 px-4 font-medium text-white shadow hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900"
                             >
-                              Start free trial
+                              Search
                             </button>
                           </div>
                         </div>

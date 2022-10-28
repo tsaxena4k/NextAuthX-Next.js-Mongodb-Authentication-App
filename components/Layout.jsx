@@ -53,14 +53,15 @@ export default function Layout({ children }) {
                 <div className="relative overflow-hidden">
         
                     <Popover as="header" className="relative">
-                        <div className="bg-gray-900 pt-6">
+                        <div className="bg-gray-900 pt-6 pb-6">
                             <nav
                             className="relative mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6"
                             aria-label="Global"
                             >
                             <div className="flex flex-1 items-center">
                                 <div className="flex w-full items-center justify-between md:w-auto">
-                                <a href="#">
+                                <a 
+                                    href="/">
                                     <span className="sr-only">Your Company</span>
                                     <img
                                     className="h-8 w-auto sm:h-10"
