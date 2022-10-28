@@ -23,3 +23,10 @@ a {
     height: 100%;
     object-fit: cover;
 }
+.border-customerBlue-500 {
+    border-color: #2567e6;
+}
+
+.border-customerBlue-500 {
+    color: #2567e6;
+}

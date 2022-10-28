@@ -10,7 +10,7 @@ handler.use(middleware); // see how we're reusing our middleware
 // GET /api/fetchPosters
 handler.get(async (req, res) => {
   const allrecords = await req.db.collection("records").aggregate([
-    { $match : { "status":2 } },
+    { $match : { "status":3 } },
     {
       $addFields: {
         university: {

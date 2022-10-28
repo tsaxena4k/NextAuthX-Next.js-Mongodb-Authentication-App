@@ -3,18 +3,16 @@ import Head from 'next/head';
 import { useCurrentUser } from '../lib/hooks';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { XCircleIcon, UsersIcon, ClockIcon, CheckBadgeIcon } from '@heroicons/react/20/solid';
+import { XCircleIcon, ClockIcon, CheckBadgeIcon } from '@heroicons/react/20/solid';
 const tabs = [
-
-
-    { name: 'Pending', href: '/records', icon: ClockIcon, current: true },
+    { name: 'Pending', href: '/records', icon: ClockIcon, current: false },
     { name: 'Approved', href: '/recordsApproved', icon: CheckBadgeIcon, current: false },
-    { name: 'Rejected', href: 'recordsRejected', icon: XCircleIcon, current: false },
-  ]
+    { name: 'Rejected', href: 'recordsRejected', icon: XCircleIcon, current: true },
+]
   
-  function classNames(...classes) {
+function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
-  }
+}
 
 const DashboardSection = () => {
     const [user, { mutate }] = useCurrentUser();
@@ -26,12 +24,10 @@ const DashboardSection = () => {
     const profilePictureRef = useRef();
     const [msg, setMsg] = useState({ message: '', isError: false });
     const router = useRouter();
-    const [showModal, setShowModal] = useState(false);
-    const [approved_id, setapprovedId] = useState(false);
    
     useEffect(() => {
         isLoading(true)
-        fetch('/api/fetchRecords')
+        fetch('/api/fetchRecordsRejected')
           .then((res) => res.json())
           .then((data) => {
             setData(data)
@@ -39,95 +35,12 @@ const DashboardSection = () => {
           })
     }, [])
 
-    const approve = (_id) => {
-        setapprovedId(_id);
-        setShowModal(true);
-    };
-
-    const confirmation = async (event) => {
-        event.preventDefault();
-        isLoading(true);
-        const body = {
-            status: 1,
-        };
-        const res = await fetch(`/api/confirmRecord?id=${approved_id}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-        });
-        if (res.status === 200) {
-            setShowModal(false);
-            setMsg({ message: 'Addes Successfully' });
-            router.push('/records');
-        } else {
-            setMsg({ message: await res.text(), isError: true });
-        }
-        isLoading(false);
-        setTimeout(() => setMsg(''), 2500);
-    };
-
     return (
         <>
             <Head>
                 <title>Dashboard</title>
             </Head>
             <div className="px-4 sm:px-6 lg:px-8">
-            {showModal ? (
-                        <>
-                        <form onSubmit={confirmation} className="space-y-6" action="#" method="POST">
-                        <div
-                            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 
-                            outline-none focus:outline-none"
-                        >
-                            <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                            {/*content*/}
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none 
-                            focus:outline-none">
-                                {/*header*/}
-                                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 
-                                rounded-t">
-                                <h3 className="text-3xl font-semibold">
-                                    Confirmation
-                                </h3>
-                                <button
-                                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl 
-                                    leading-none font-semibold outline-none focus:outline-none"
-                                    onClick={() => setShowModal(false)}
-                                >
-                                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                                    ×
-                                    </span>
-                                </button>
-                                </div>
-                                {/*body*/}
-                                <div className="relative p-6 flex-auto">
-                                    <p className="mt-2 text-sm text-gray-700">
-                                        are you sure?
-                                    </p>
-                                </div>
-                                {/*footer*/}
-                                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                                <button
-                                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                    type="button"
-                                    onClick={() => setShowModal(false)}
-                                >
-                                    Close
-                                </button>
-                                <button
-                                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                    type="button"
-                                    onClick={confirmation}>
-                                    Approve
-                                </button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                        </form>
-                        <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                        </>
-                    ) : null}
                 <div>
                     <div className="sm:hidden">
                         <label htmlFor="tabs" className="sr-only">
@@ -285,7 +198,7 @@ const DashboardSection = () => {
                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span className="inline-flex rounded-full bg-green-100 px-2 
                                             text-xs font-semibold leading-5 text-green-800">
-                                            Approved
+                                            Active
                                         </span>
                                     </td>:<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <span className="inline-flex rounded-full bg-red-100 px-2 
@@ -300,7 +213,7 @@ const DashboardSection = () => {
                                     </div>
                                 </td>
                                 {
-                                    (person.status == '2' && user.role == 'poster')?
+                                    (person.status == '2')?
                                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                             <Link href="/record/:[recordId]" as={`/record/${person._id}`}>
@@ -309,17 +222,7 @@ const DashboardSection = () => {
                                                 </a>
                                             </Link>
                                         </div>
-                                    </td>:(person.status == '2')?
-                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <button
-                                            type="button"
-                                            onClick={() => approve(person._id)}
-                                            className="inline-flex items-center rounded border border-transparent 
-                                            bg-indigo-100 px-2.5 py-1.5 text-xs font-medium text-indigo-700 hover:bg-indigo-200 
-                                            focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                                                Approve
-                                        </button>
-                                    </td>:<td></td>
+                                    </td>:<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                 }
                                 
                                 </tr>
