@@ -35,10 +35,12 @@ export default function Login() {
                 const userObj =  res.json();
                 // writing our user object to the state
                 mutate(userObj);
+                router.replace("/");
             }else if (res.status === 403) {
                 const userObj =  res.json();
                 // writing our user object to the state
                 mutate(userObj);
+                router.replace("/");
             } else {
                 isLoading(false);
                 setErrorMsg( res.text());
@@ -95,34 +97,6 @@ export default function Login() {
                 <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
                     <form className="space-y-6" onSubmit={onSubmit}>
-                    <div className="mt-4 space-y-4 ">
-                            <div className="flex justify-around">
-                                <div className="flex items-center">
-                                    <input
-                                        id="push-everything"
-                                        name="push-notifications"
-                                        type="radio"
-                                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    />
-                                    <label
-                                    htmlFor="push-everything" className="ml-3 block text-sm font-medium text-gray-700">
-                                        Admin
-                                    </label>
-                                </div>
-                                <div className="flex items-center">
-                                    <input
-                                        id="push-email"
-                                        name="push-notifications"
-                                        type="radio"
-                                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                    />
-                                    <label htmlFor="push-email" className="ml-3 block text-sm font-medium text-gray-700">
-                                        Poster
-                                    </label>
-                                </div>
-                            </div>
-                            
-                        </div>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                         Email
@@ -169,9 +143,9 @@ export default function Login() {
                         </div>
 
                         <div className="text-sm">
-                        <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                            Forgot your password?
-                        </a>
+                            <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                Forgot your password?
+                            </a>
                         </div>
                     </div>
 

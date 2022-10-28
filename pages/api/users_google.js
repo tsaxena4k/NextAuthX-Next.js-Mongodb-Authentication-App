@@ -17,14 +17,14 @@ handler.post(async (req, res) => {
     res.status(400).send('The email you entered is invalid.');
     return;
   }
+  const role = 'poster';
   
   // check if email existed
   if ((await req.db.collection('users').countDocuments({ email })) > 0) {
-    console.log(email);
     /**res.status(201).json({
       user: extractUser(req),
     });**/
-
+    
     const user = await req.db.collection('users').findOne({
       email: email,
     });
@@ -40,7 +40,7 @@ handler.post(async (req, res) => {
   }
   const user = await req.db
     .collection('users')
-    .insertOne({ email, name, profilePicture })
+    .insertOne({ email, name, profilePicture, role })
     .then(({ ops }) => ops[0]);
   req.logIn(user, (err) => {
     if (err) throw err;

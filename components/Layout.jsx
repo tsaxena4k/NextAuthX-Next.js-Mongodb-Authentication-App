@@ -96,9 +96,6 @@ export default function Layout({ children }) {
                                                 <Link href="/login">
                                                     <a className="text-base font-medium text-white hover:text-gray-300">Log in</a>
                                                 </Link>
-                                                <Link href="/signup">
-                                                    <a className="text-base font-medium text-white hover:text-gray-300">Sign up</a>
-                                                </Link>
                                             </div>
                                             <a href="#" className="text-base font-medium text-white hover:text-gray-300">
                                                 {user && <Link href="/login">
@@ -118,18 +115,23 @@ export default function Layout({ children }) {
                                                 </Link>
                                             </div>
                                             <a href="#" className="text-base font-medium text-white hover:text-gray-300">
-                                                {user && <Link href='/dashboard'><a className="text-base font-medium text-white hover:text-gray-300">Dashboard</a></Link>} 
                                                 {user && <button className="text-base font-medium text-white hover:text-gray-300" onClick={handleLogout}>Logout</button>}
                                             </a>
                                         </>
                                     )}
-                                    {!user ? (<Link href="/signup">
+                                    {!user ? (
+                                    <Link href="/signup">
                                 <a
                                 href="#"
                                 className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
                                 >Sign up       
-                                </a></Link>): <Link href="/user/[userId]" as={`/user/${user._id}`}>
-                                     <a className="text-base font-medium text-white hover:text-gray-300">Profile</a></Link>}
+                                </a></Link>): 
+                                <Link href="/dashboard">
+                                <a
+                                href="#"
+                                className="inline-flex items-center rounded-md border border-transparent bg-gray-600 px-4 py-2 text-base font-medium text-white hover:bg-gray-700"
+                                >Dashboard       
+                                </a></Link>}
                             </div>
                             </nav>
                         </div>
