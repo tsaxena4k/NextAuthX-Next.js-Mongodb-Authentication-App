@@ -105,40 +105,6 @@ const DashboardSection = () => {
         },
       }
 
-      const team = [
-        {
-          name: 'Leslie Alexander',
-          handle: 'lesliealexander',
-          role: 'Co-Founder / CEO',
-          imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },
-        {
-          name: 'Michael Foster',
-          handle: 'michaelfoster',
-          role: 'Co-Founder / CTO',
-          imageUrl:
-            'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },
-        {
-          name: 'Dries Vincent',
-          handle: 'driesvincent',
-          role: 'Manager, Business Relations',
-          imageUrl:
-            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },
-        {
-          name: 'Lindsay Walton',
-          handle: 'lindsaywalton',
-          role: 'Front-end Developer',
-          imageUrl:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },
-      ]
-      
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(' ')
-    }
 
     return (
         <>
@@ -300,8 +266,10 @@ const DashboardSection = () => {
                           <a href="#" className="focus:outline-none">
                             <span className="absolute inset-0" aria-hidden="true" />
                             <p className="text-sm font-medium text-gray-900">{person.lname}, {person.fname} </p>
+                            <p className="text-sm text-gray-500">Dissertation: {person.dissertation_Title}</p>
                             <p className="truncate text-sm text-gray-500">{person.universityDetails[0].name}</p>
                             <p className="truncate text-sm text-gray-500">{person.year}</p>
+                            <p className="truncate text-sm text-gray-900">Advisor: {person.advisorName[0].name}</p>
                           </a>
                         </div>
                       </div>
