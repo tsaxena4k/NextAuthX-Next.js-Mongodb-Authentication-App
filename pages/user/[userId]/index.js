@@ -37,12 +37,6 @@ const useree = {
     'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=320&h=320&q=80',
 }
 
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
@@ -55,10 +49,10 @@ export default function Example() {
   const profilePictureRef = useRef();
   const [msg, setMsg] = useState({ message: '', isError: false });
   const router = useRouter();
-
+ 
   useEffect(() => {
         if (!user) {
-            //router.push('/');
+            router.push('/');
         } else {
             nameRef.current.value = user.name;
             bioRef.current.value = user.bio;

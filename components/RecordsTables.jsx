@@ -157,11 +157,19 @@ const DashboardSection = () => {
                                         <div className="font-medium">{person.createdate}</div>
                                     </div>
                                 </td>
-                                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <div className="ml-4">
-                                        <div className="font-medium">Edit</div>
-                                    </div>
-                                </td>
+                                {
+                                    (person.status == '2')?
+                                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                            <Link href="/record/:[recordId]" as={`/record/${person._id}`}>
+                                                <a href="#" className="text-indigo-600 hover:text-indigo-900">
+                                                    Edit<span className="sr-only"></span>
+                                                </a>
+                                            </Link>
+                                        </div>
+                                    </td>:<td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
+                                }
+                                
                                 </tr>
                             ))}
                             </tbody>
