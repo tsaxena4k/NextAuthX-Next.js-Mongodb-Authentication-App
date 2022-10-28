@@ -128,7 +128,7 @@ const DashboardSection = () => {
                         <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                         </>
                     ) : null}
-                <div>
+               {(user.role == 'admin')? <div>
                     <div className="sm:hidden">
                         <label htmlFor="tabs" className="sr-only">
                         Select a tab
@@ -172,7 +172,7 @@ const DashboardSection = () => {
                         </nav>
                         </div>
                     </div>
-                </div>
+                </div>:null }
                 <div className='sm:flex-auto mt-2'></div>
                 <div className="sm:flex sm:items-center">
                     <div className="sm:flex-auto">
