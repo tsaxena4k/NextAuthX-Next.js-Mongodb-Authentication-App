@@ -9,65 +9,129 @@ handler.use(middleware); // see how we're reusing our middleware
 
 // GET /api/fetchPosters
 handler.get(async (req, res) => {
-  const allrecords = await req.db.collection("records").aggregate([
-    { $match : { "status":2 } },
-    {
-      $addFields: {
-        university: {
-          $toObjectId: "$university"
+  var allrecords = [];
+  if(req.user.role == 'poster'){
+    allrecords = await req.db.collection("records").aggregate([
+      { $match : { "status":2, "createby": new RegExp('.*' + req.user._id + '.*') } },
+      {
+        $addFields: {
+          university: {
+            $toObjectId: "$university"
+          }
+        }
+      },
+      {
+        $addFields: {
+          advisor: {
+            $toObjectId: "$advisor"
+          }
+        }
+      },
+      {
+        $lookup:
+        {
+          from: 'universities',
+          localField: 'university',
+          foreignField:'_id',
+          as: 'universityDetails'
+        }
+      },
+      {
+      $lookup:
+        {
+          from: 'countries',
+          localField: 'universityDetails.country',
+          foreignField: 'id',
+          as: 'countriesdetails'
+        }
+      },{
+        $lookup:
+        {
+          from: 'states',
+          localField: 'universityDetails.state',
+          foreignField: 'id',
+          as: 'statesdetails'
+        }
+      },{
+        $lookup:
+        {
+          from: 'cities',
+          localField: 'universityDetails.city',
+          foreignField: 'id',
+          as: 'citiesdetails'
+        }
+      },{
+        $lookup:
+        {
+          from: 'advisors',
+          localField: 'advisor',
+          foreignField: '_id',
+          as: 'advisorName'
         }
       }
-    },
-    {
-      $addFields: {
-        advisor: {
-          $toObjectId: "$advisor"
+    ]).toArray();
+  }else {
+    allrecords = await req.db.collection("records").aggregate([
+      { $match : { "status":2 } },
+      {
+        $addFields: {
+          university: {
+            $toObjectId: "$university"
+          }
+        }
+      },
+      {
+        $addFields: {
+          advisor: {
+            $toObjectId: "$advisor"
+          }
+        }
+      },
+      {
+        $lookup:
+        {
+          from: 'universities',
+          localField: 'university',
+          foreignField:'_id',
+          as: 'universityDetails'
+        }
+      },
+      {
+      $lookup:
+        {
+          from: 'countries',
+          localField: 'universityDetails.country',
+          foreignField: 'id',
+          as: 'countriesdetails'
+        }
+      },{
+        $lookup:
+        {
+          from: 'states',
+          localField: 'universityDetails.state',
+          foreignField: 'id',
+          as: 'statesdetails'
+        }
+      },{
+        $lookup:
+        {
+          from: 'cities',
+          localField: 'universityDetails.city',
+          foreignField: 'id',
+          as: 'citiesdetails'
+        }
+      },{
+        $lookup:
+        {
+          from: 'advisors',
+          localField: 'advisor',
+          foreignField: '_id',
+          as: 'advisorName'
         }
       }
-    },
-    {
-      $lookup:
-      {
-        from: 'universities',
-        localField: 'university',
-        foreignField:'_id',
-        as: 'universityDetails'
-      }
-    },
-    {
-    $lookup:
-      {
-        from: 'countries',
-        localField: 'universityDetails.country',
-        foreignField: 'id',
-        as: 'countriesdetails'
-      }
-    },{
-      $lookup:
-      {
-        from: 'states',
-        localField: 'universityDetails.state',
-        foreignField: 'id',
-        as: 'statesdetails'
-      }
-    },{
-      $lookup:
-      {
-        from: 'cities',
-        localField: 'universityDetails.city',
-        foreignField: 'id',
-        as: 'citiesdetails'
-      }
-    },{
-      $lookup:
-      {
-        from: 'advisors',
-        localField: 'advisor',
-        foreignField: '_id',
-        as: 'advisorName'
-      }
-    }
-  ]).toArray();
+    ]).toArray();
+  }
+  
   res.status(200).json(allrecords);
 });
 
