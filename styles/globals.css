@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    background: #fff;
+}
+.nav-wrapper {
+    background-color: #009688;
+}
+
+a {
+    color: #4f93f9;
+    text-decoration: none;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.img-fluid {
+    height: 100%;
+    object-fit: cover;
+}
+.border-customerBlue-500 {
+    border-color: #2567e6;
+}
+
+.border-customerBlue-500 {
+    color: #2567e6;
+}
