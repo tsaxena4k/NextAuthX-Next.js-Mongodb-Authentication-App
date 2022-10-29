@@ -1,5 +1,5 @@
-import Posters from '../components/Posters';
-import PostersForm from '../components/PostersForm';
+import Posters from '../../components/Posters';
+import PostersForm from '../../components/PostersForm';
 
 export default function login() {
     return (

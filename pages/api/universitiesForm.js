@@ -1,5 +1,5 @@
-import Universities from '../components/Universities';
-import UniversitiesForm from '../components/UniversitiesForm';
+import Universities from '../../components/Universities';
+import UniversitiesForm from '../../components/UniversitiesForm';
 
 export default function login() {
     return (
