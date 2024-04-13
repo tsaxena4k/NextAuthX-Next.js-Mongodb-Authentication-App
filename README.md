@@ -2,7 +2,7 @@
   <img src="https://i.ibb.co/h9fG4k8/Banner2.jpg" alt="Sublime's custom image" width=1500/>
 </p>
 
-<h1 align="center">NextAuthX: Secure Authentication with Next.js, MongoDB, and Passport <br/> (Next.js❤️MongoDB)➕Passport.js</h1>
+<h1 align="center">NextAuthX: Secure Authentication with Next.js, MongoDB, and Passport</h1>
 
 <div align="center">
   
